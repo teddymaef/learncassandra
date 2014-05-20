@@ -1,4 +1,4 @@
-# Cassandra Internal Data Structure
+# Internal Data Structure
 
 <sup>[1](#ref_1)</sup>The Cassandra data model is a schema-optional, column-oriented data model. This means that, unlike a relational database, you do not need to model all of the columns required by your application up front, as each row is not required to have the same set of columns.
 

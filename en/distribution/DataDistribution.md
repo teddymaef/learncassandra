@@ -1,1 +1,1 @@
-# Cassandra Data Distribution & Replication
+# Data Distribution

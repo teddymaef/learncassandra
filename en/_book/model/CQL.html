@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.2" data-basepath=".." data-revision="1400148256339">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.2" data-basepath=".." data-revision="1400556204428">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -208,10 +208,10 @@ var jiathis_config = {data_track_clickback:'true'};
                             
                         </li>
                     
-                        <li  data-level="2.4" data-path="model/HowIsDataStored.html">
+                        <li  data-level="2.4" data-path="model/WhereIsDataStored.html">
                             
-                            <a href="../model/HowIsDataStored.html">
-                                <i class="fa fa-check"></i> <b>2.4.</b> How Is Data Stored
+                            <a href="../model/WhereIsDataStored.html">
+                                <i class="fa fa-check"></i> <b>2.4.</b> Where Is Data Stored
                             </a>
                             
                         </li>
@@ -301,7 +301,7 @@ var jiathis_config = {data_track_clickback:'true'};
     
         <a href="../model/CQLAndDataStructure.html" title="CQL &amp; Data Structure" class="chapter  " data-progress="2.3" style="left: 57.142857142857146%;"></a>
     
-        <a href="../model/HowIsDataStored.html" title="How Is Data Stored" class="chapter  " data-progress="2.4" style="left: 64.28571428571429%;"></a>
+        <a href="../model/WhereIsDataStored.html" title="Where Is Data Stored" class="chapter  " data-progress="2.4" style="left: 64.28571428571429%;"></a>
     
         <a href="../model/Indexing.html" title="Indexing" class="chapter  " data-progress="2.5" style="left: 71.42857142857143%;"></a>
     
@@ -318,7 +318,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2734">
+                    <section class="normal" id="section-gitbook_3271">
                     
                         <h1 id="cql">CQL</h1>
 <p><sup><a href="#ref_1">1</a></sup>CQL consists of statements. Like SQL, statements change data, look up data, store data, or change the way data is stored. Statements end in a semicolon (;).</p>
@@ -326,11 +326,11 @@ var jiathis_config = {data_track_clickback:'true'};
 <pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> MyTable;</span>
 
 <span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> MyTable
-  <span class="hljs-keyword">SET</span> SomeColumn = <span class="hljs-string">'SomeValue'</span>
-  <span class="hljs-keyword">WHERE</span> columnName = B70DE1D0-<span class="hljs-number">9908</span>-<span class="hljs-number">4</span>AE3-BE34-<span class="hljs-number">5573E5</span>B09F14;</span>
+  <span class="hljs-keyword">SET</span> SomeColumn = <span class="hljs-string">'Some Value'</span>
+  <span class="hljs-keyword">WHERE</span> columnName = <span class="hljs-string">'Something Else'</span>;</span>
 </code></pre>
 <p>This is a sequence of two CQL statements. This example shows one statement per line, although a statement can usefully be split across lines as well.</p>
-<h2 id="uppercase-and-lowercase">Uppercase and lowercase</h2>
+<h2 id="uppercase-and-lowercase">Uppercase and Lowercase</h2>
 <p>Keyspace, column, and table names created using CQL are case-insensitive unless enclosed in double quotation marks. If you enter names for these objects using any uppercase letters, Cassandra stores the names in lowercase. You can force the case by using double quotation marks.</p>
 <p>For example:</p>
 <pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> test (
@@ -447,6 +447,8 @@ var jiathis_config = {data_track_clickback:'true'};
 </tr>
 </tbody>
 </table>
+<h2 id="cql-command-reference">CQL Command Reference</h2>
+<p>For a complete CQL command reference, see <a href="http://www.datastax.com/documentation/cql/3.1/cql/cql_reference/cqlCommandsTOC.html" target="_blank">CQL commands</a>.</p>
 <h2 id="references">References</h2>
 <ol>
 <li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/cql_reference/cql_lexicon_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/cql_reference/cql_lexicon_c.html</a></li>

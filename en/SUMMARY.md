@@ -8,7 +8,7 @@
     * [Internal Data Structure](model\InternalDataStructure.md)
     * [CQL](model\CQL.md)
     * [CQL & Data Structure](model\CQLAndDataStructure.md)
-    * [How Is Data Stored](model\HowIsDataStored.md)
+    * [Where Is Data Stored](model\WhereIsDataStored.md)
     * [Indexing](model\Indexing.md)
 * [Data Distribution](distribution\DataDistribution.md)
 * [Concurrency Control](distribution\ConcurrencyControl.md)

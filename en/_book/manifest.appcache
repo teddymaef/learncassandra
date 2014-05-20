@@ -1,21 +1,21 @@
 CACHE MANIFEST
-# Revision 1400148256339
+# Revision 1400556204429
 
 CACHE:
 index.html
-about/TheHistoryofCassandra.html
 about/AboutCassandra.html
-caching/DataCaching.html
-client/ClientRequests.html
-distribution/ConcurrencyControl.html
 about/TheCAPTheorem.html
+about/TheHistoryofCassandra.html
 about/WhatCanCassandraDo.html
-model/CQLAndDataStructure.html
+client/ClientRequests.html
 distribution/DataDistribution.html
+distribution/ConcurrencyControl.html
 model/CQL.html
-model/DataModelAndCQL.html
-model/HowIsDataStored.html
+caching/DataCaching.html
+model/CQLAndDataStructure.html
 model/Indexing.html
+model/DataModelAndCQL.html
+model/WhereIsDataStored.html
 model/InternalDataStructure.html
 gitbook\app.js
 gitbook\fonts\anonymouspro\400.woff

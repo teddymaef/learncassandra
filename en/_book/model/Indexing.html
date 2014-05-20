@@ -16,7 +16,7 @@
         <link rel="next" href="../distribution/DataDistribution.html" />
         
         
-        <link rel="prev" href="../model/HowIsDataStored.html" />
+        <link rel="prev" href="../model/WhereIsDataStored.html" />
         
 
         <meta property="og:title" content="Indexing | Learn Cassandra">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1400148256339">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1400556204428">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -208,10 +208,10 @@ var jiathis_config = {data_track_clickback:'true'};
                             
                         </li>
                     
-                        <li  data-level="2.4" data-path="model/HowIsDataStored.html">
+                        <li  data-level="2.4" data-path="model/WhereIsDataStored.html">
                             
-                            <a href="../model/HowIsDataStored.html">
-                                <i class="fa fa-check"></i> <b>2.4.</b> How Is Data Stored
+                            <a href="../model/WhereIsDataStored.html">
+                                <i class="fa fa-check"></i> <b>2.4.</b> Where Is Data Stored
                             </a>
                             
                         </li>
@@ -301,7 +301,7 @@ var jiathis_config = {data_track_clickback:'true'};
     
         <a href="../model/CQLAndDataStructure.html" title="CQL &amp; Data Structure" class="chapter done " data-progress="2.3" style="left: 57.142857142857146%;"></a>
     
-        <a href="../model/HowIsDataStored.html" title="How Is Data Stored" class="chapter done " data-progress="2.4" style="left: 64.28571428571429%;"></a>
+        <a href="../model/WhereIsDataStored.html" title="Where Is Data Stored" class="chapter done " data-progress="2.4" style="left: 64.28571428571429%;"></a>
     
         <a href="../model/Indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 71.42857142857143%;"></a>
     
@@ -318,9 +318,9 @@ var jiathis_config = {data_track_clickback:'true'};
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2737">
+                    <section class="normal" id="section-gitbook_3274">
                     
-                        <h1 id="about-indexing">About Indexing</h1>
+                        <h1 id="indexing">Indexing</h1>
 <p><sup><a href="#ref_1">1</a></sup>An index provides a means to access data in Cassandra using attributes other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditional query by the column.</p>
 <p>An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed.</p>
 <p><strong>Caution:</strong></p>
@@ -328,9 +328,9 @@ var jiathis_config = {data_track_clickback:'true'};
 <li>By the current version (2.0.7) of Apache Cassandra, you could only query by an indexed column with equality comparison condition. Range select or order-by by an indexed column is not supported. The reason is the keys stored in the hidden column family are unsorted.</li>
 <li>All the data of the hidden column family of an index is only stored locally on each node, which means to query by an indexed column, the requests are sent to all the nodes, waiting for all the resonses, and then the results are merged. So if you have many nodes, the query response slows down as more machines are added to the cluster..</li>
 </ul>
-<h2 id="when-to-use-an-index-">When to use an index?</h2>
+<h2 id="when-to-use-an-index-">When to Use An Index?</h2>
 <p><sup><a href="#ref_2">2</a></sup>Cassandra&#39;s built-in indexes are best on a table having many rows that contain the indexed value. The more unique values that exist in a particular column, the more overhead you will have for querying and maintaining the index. For example, suppose you had a playlists table with a billion songs and wanted to look up songs by the artist. Many songs will share the same column value for artist. The artist column is a good candidate for an index.</p>
-<h2 id="when-not-to-use-an-index-">When not to use an index?</h2>
+<h2 id="when-not-to-use-an-index-">When Not to Use An Index?</h2>
 <p><sup><a href="#ref_2">2</a></sup>Do not use an index in these situations:</p>
 <ul>
 <li>On high-cardinality columns because you then query a huge volume of records for a small number of results</li>
@@ -352,7 +352,7 @@ var jiathis_config = {data_track_clickback:'true'};
         </div>
 
         
-        <a href="../model/HowIsDataStored.html" class="navigation navigation-prev " aria-label="Previous page: How Is Data Stored"><i class="fa fa-angle-left"></i></a>
+        <a href="../model/WhereIsDataStored.html" class="navigation navigation-prev " aria-label="Previous page: Where Is Data Stored"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../distribution/DataDistribution.html" class="navigation navigation-next " aria-label="Next page: Data Distribution"><i class="fa fa-angle-right"></i></a>

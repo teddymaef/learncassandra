@@ -7,12 +7,12 @@ For example, the following is valid CQL syntax:
 SELECT * FROM MyTable;
 
 UPDATE MyTable
-  SET SomeColumn = 'SomeValue'
-  WHERE columnName = B70DE1D0-9908-4AE3-BE34-5573E5B09F14;
+  SET SomeColumn = 'Some Value'
+  WHERE columnName = 'Something Else';
 ```
 This is a sequence of two CQL statements. This example shows one statement per line, although a statement can usefully be split across lines as well.
 
-## Uppercase and lowercase
+## Uppercase and Lowercase
 
 Keyspace, column, and table names created using CQL are case-insensitive unless enclosed in double quotation marks. If you enter names for these objects using any uppercase letters, Cassandra stores the names in lowercase. You can force the case by using double quotation marks.
 
@@ -50,6 +50,10 @@ CQL keywords are case-insensitive. For example, the keywords SELECT and select a
 | timeuuid | uuids | Type 1 UUID only |
 | varchar | strings | UTF-8 encoded string |
 | varint | integers | Arbitrary-precision integer |
+
+## CQL Command Reference
+
+For a complete CQL command reference, see [CQL commands](http://www.datastax.com/documentation/cql/3.1/cql/cql_reference/cqlCommandsTOC.html).
 
 ## References
 

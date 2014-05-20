@@ -1,4 +1,4 @@
-# How Is Data Stored
+# Where Is Data Stored
 
 For each column family, there are 3 layer of data stores: memtable, commit log and SSTable.
 

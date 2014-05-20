@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>How Is Data Stored | Learn Cassandra</title>
+        <title>Where Is Data Stored | Learn Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -19,7 +19,7 @@
         <link rel="prev" href="../model/CQLAndDataStructure.html" />
         
 
-        <meta property="og:title" content="How Is Data Stored | Learn Cassandra">
+        <meta property="og:title" content="Where Is Data Stored | Learn Cassandra">
         <meta property="og:site_name" content="Learn Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.4" data-basepath=".." data-revision="1400148256339">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.4" data-basepath=".." data-revision="1400556204428">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -128,7 +128,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/HowIsDataStored.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/WhereIsDataStored.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -208,10 +208,10 @@ var jiathis_config = {data_track_clickback:'true'};
                             
                         </li>
                     
-                        <li  data-level="2.4" data-path="model/HowIsDataStored.html">
+                        <li  data-level="2.4" data-path="model/WhereIsDataStored.html">
                             
-                            <a href="../model/HowIsDataStored.html">
-                                <i class="fa fa-check"></i> <b>2.4.</b> How Is Data Stored
+                            <a href="../model/WhereIsDataStored.html">
+                                <i class="fa fa-check"></i> <b>2.4.</b> Where Is Data Stored
                             </a>
                             
                         </li>
@@ -301,7 +301,7 @@ var jiathis_config = {data_track_clickback:'true'};
     
         <a href="../model/CQLAndDataStructure.html" title="CQL &amp; Data Structure" class="chapter done " data-progress="2.3" style="left: 57.142857142857146%;"></a>
     
-        <a href="../model/HowIsDataStored.html" title="How Is Data Stored" class="chapter done " data-progress="2.4" style="left: 64.28571428571429%;"></a>
+        <a href="../model/WhereIsDataStored.html" title="Where Is Data Stored" class="chapter done " data-progress="2.4" style="left: 64.28571428571429%;"></a>
     
         <a href="../model/Indexing.html" title="Indexing" class="chapter  " data-progress="2.5" style="left: 71.42857142857143%;"></a>
     
@@ -318,9 +318,9 @@ var jiathis_config = {data_track_clickback:'true'};
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2736">
+                    <section class="normal" id="section-gitbook_3276">
                     
-                        <h1 id="how-is-data-stored">How Is Data Stored</h1>
+                        <h1 id="where-is-data-stored">Where Is Data Stored</h1>
 <p>For each column family, there are 3 layer of data stores: memtable, commit log and SSTable.</p>
 <p><sup><a href="#ref_1">1</a></sup>For efficiency, Cassandra does not repeat the names of the columns in memory or in the SSTable. For example, data is inserted using these CQL statements:</p>
 <pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> k1.t1 (c1) <span class="hljs-keyword">VALUES</span> (v1);</span>
