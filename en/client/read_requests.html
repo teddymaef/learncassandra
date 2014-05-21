@@ -40,7 +40,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1400657153037">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1400658471951">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -392,7 +392,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_15">
+                    <section class="normal" id="section-gitbook_9">
                     
                         <h1 id="read-requests">Read Requests</h1>
 <p>The number of replicas contacted by a client read request is determined by the consistency level specified by the client. The coordinator sends these requests to the replicas that are currently responding the fastest. The nodes contacted respond with the requested data; if multiple nodes are contacted, the rows from each replica are compared in memory to see if they are consistent. If they are not, then the replica that has the most recent data (based on the timestamp) is used by the coordinator to forward the result back to the client.</p>
@@ -440,6 +440,18 @@
         <script src="//cdnjscn.b0.upaiyun.com/libs/ace/1.1.3/mode-javascript.js"></script>
         <script src="..\gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
         <script src="..\gitbook/app.js"></script>
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51187194-1', 'teddymaef.github.io');
+  ga('send', 'pageview');
+
+</script>
+		
         
 
 <script>
