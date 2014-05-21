@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Indexing | Learn Cassandra</title>
+        <title>Read Requests | Learn Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,11 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../replication/data_replication.html" />
         
-        
-        <link rel="prev" href="../model/where_is_data_stored.html" />
+        <link rel="prev" href="../client/write_requests.html" />
         
 
-        <meta property="og:title" content="Indexing | Learn Cassandra">
+        <meta property="og:title" content="Read Requests | Learn Cassandra">
         <meta property="og:site_name" content="Learn Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +40,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1400655786034">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1400655786034">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -136,7 +134,7 @@
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/indexing.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/client/read_requests.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -343,7 +341,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 50%;min-width: 45%;"></div>
+        <div class="inner" style="width: 100%;min-width: 95%;"></div>
     </div>
     <div class="chapters">
     
@@ -369,56 +367,58 @@
     
         <a href="../model/indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
     
-        <a href="../replication/data_replication.html" title="Data Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
+        <a href="../replication/data_replication.html" title="Data Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
-        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
+        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
-        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter  " data-progress="3.3" style="left: 70%;"></a>
+        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter done " data-progress="3.3" style="left: 70%;"></a>
     
-        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter  new-chapter" data-progress="4" style="left: 75%;"></a>
+        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter done new-chapter" data-progress="4" style="left: 75%;"></a>
     
-        <a href="../caching/data_caching.html" title="Data Caching" class="chapter  new-chapter" data-progress="5" style="left: 80%;"></a>
+        <a href="../caching/data_caching.html" title="Data Caching" class="chapter done new-chapter" data-progress="5" style="left: 80%;"></a>
     
-        <a href="../client/client_requests.html" title="Client Requests" class="chapter  new-chapter" data-progress="6" style="left: 85%;"></a>
+        <a href="../client/client_requests.html" title="Client Requests" class="chapter done new-chapter" data-progress="6" style="left: 85%;"></a>
     
-        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter  " data-progress="6.1" style="left: 90%;"></a>
+        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter done " data-progress="6.1" style="left: 90%;"></a>
     
-        <a href="../client/write_requests.html" title="Write Requests" class="chapter  " data-progress="6.2" style="left: 95%;"></a>
+        <a href="../client/write_requests.html" title="Write Requests" class="chapter done " data-progress="6.2" style="left: 95%;"></a>
     
-        <a href="../client/read_requests.html" title="Read Requests" class="chapter  " data-progress="6.3" style="left: 100%;"></a>
+        <a href="../client/read_requests.html" title="Read Requests" class="chapter done " data-progress="6.3" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_14">
+                    <section class="normal" id="section-gitbook_6">
                     
-                        <h1 id="indexing">Indexing</h1>
-<p><sup><a href="#ref_1">1</a></sup>An index (former name: secondary index) provides means to access data in Cassandra using non-primary key fields other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditionally query by the column.</p>
-<p>An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed. The data of an index is local only, which means it will not be replicated to other nodes.</p>
-<p><strong>Caution:</strong></p>
-<ul>
-<li>By the current version (2.0.7) of Apache Cassandra, you could only query by an indexed column with equality comparison condition. Range select or order-by by an indexed column is not supported. The reason is the keys stored in the hidden column family are unsorted.</li>
-<li>All the data of the hidden column family of an index is only stored locally on each node, which means to query by an indexed column, the requests are sent to all the nodes, waiting for all the resonses, and then the results are merged. So if you have many nodes, the query response slows down as more machines are added to the cluster..</li>
-</ul>
-<h2 id="when-to-use-an-index-">When to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Cassandra&#39;s built-in indexes are best on a table having many rows that contain the indexed value. The more unique values that exist in a particular column, the more overhead you will have for querying and maintaining the index. For example, suppose you had a playlists table with a billion songs and wanted to look up songs by the artist. Many songs will share the same column value for artist. The artist column is a good candidate for an index.</p>
-<h2 id="when-not-to-use-an-index-">When Not to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Do not use an index in these situations:</p>
-<ul>
-<li>On high-cardinality columns because you then query a huge volume of records for a small number of results</li>
-<li>In tables that use a counter column</li>
-<li>On a frequently updated or deleted column</li>
-<li>To look for a row in a large partition unless narrowly queried</li>
-</ul>
-<h2 id="references">References</h2>
-<ol>
-<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html</a></li>
-<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html</a></li>
-</ol>
+                        <h1 id="read-requests">Read Requests</h1>
+<p>The number of replicas contacted by a client read request is determined by the consistency level specified by the client. The coordinator sends these requests to the replicas that are currently responding the fastest. The nodes contacted respond with the requested data; if multiple nodes are contacted, the rows from each replica are compared in memory to see if they are consistent. If they are not, then the replica that has the most recent data (based on the timestamp) is used by the coordinator to forward the result back to the client.</p>
+<p>To ensure that all replicas have the most recent version of frequently-read data, the coordinator also contacts and compares the data from all the remaining replicas that own the row in the background. If the replicas are inconsistent, the coordinator issues writes to the out-of-date replicas to update the row to the most recent values.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="a-single-data-center-cluster-with-a-consistency-level-of-quorum">A single data center cluster with a consistency level of QUORUM</h3>
+<p>In a single data center cluster with a replication factor of 3, and a read consistency level of QUORUM, 2 of the 3 replicas for the given row must respond to fulfill the read request. If the contacted replicas have different versions of the row, the replica with the most recent version will return the requested data. In the background, the third replica is checked for consistency with the first two, and if needed, a read repair is initiated for the out-of-date replicas.</p>
+<p><img src="..\assets\singleDCConQuorum.svg" alt="Figure 1"></p>
+<h3 id="a-single-data-center-cluster-with-a-consistency-level-of-one">A single data center cluster with a consistency level of ONE</h3>
+<p>In a single data center cluster with a replication factor of 3, and a read consistency level of ONE, the closest replica for the given row is contacted to fulfill the read request. In the background a read repair is potentially initiated, based on the read_repair_chance setting of the table, for the other replicas.</p>
+<p><img src="..\assets\singleDCConOne.svg" alt="Figure 2"></p>
+<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-quorum">A two data center cluster with a consistency level of QUORUM</h3>
+<p>In a two data center cluster with a replication factor of 3, and a read consistency of QUORUM, 4 replicas for the given row must resond to fulfill the read request. The 4 replicas can be from any data center. In the background, the remaining replicas are checked for consistency with the first four, and if needed, a read repair is initiated for the out-of-date replicas.</p>
+<p><img src="..\assets\multipleDCConQuorum.svg" alt="Figure 3"></p>
+<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-local_quorum">A two data center cluster with a consistency level of LOCAL_QUORUM</h3>
+<p>In a multiple data center cluster with a replication factor of 3, and a read consistency of LOCAL_QUORUM, 2 replicas in the same data center as the coordinator node for the given row must respond to fulfill the read request. In the background, the remaining replicas are checked for consistency with the first 2, and if needed, a read repair is initiated for the out-of-date replicas.</p>
+<p><img src="..\assets\multipleDCConLocalQuorum.svg" alt="Figure 4"></p>
+<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-one">A two data center cluster with a consistency level of ONE</h3>
+<p>In a multiple data center cluster with a replication factor of 3, and a read consistency of ONE, the closest replica for the given row, regardless of data center, is contacted to fulfill the read request. In the background a read repair is potentially initiated, based on the read_repair_chance setting of the table, for the other replicas.</p>
+<p><img src="..\assets\multipleDCConOne.svg" alt="Figure 5"></p>
+<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-local_one">A two data center cluster with a consistency level of LOCAL_ONE</h3>
+<p>In a multiple data center cluster with a replication factor of 3, and a read consistency of LOCAL_ONE, the closest replica for the given row in the same data center as the coodindator node is contacted to fulfill the read request. In the background a read repair is potentially initiated, based on the read_repair_chance setting of the table, for the other replicas.</p>
+<p><img src="..\assets\multipleDCConLocalOne.svg" alt="Figure 6"></p>
+<h3 id="rapid-read-protection-using-speculative_retry">Rapid read protection using speculative_retry</h3>
+<p>Rapid read protection allows Cassandra to still deliver read requests when the originally selected replica nodes are either down or taking too long to respond. If the table has been configured with the speculative_retry property, the coordinator node for the read request will retry the request with another replica node if the original replica node exceeds a configurable timeout value to complete the read request.</p>
+<p><img src="..\assets\rapidReadProtection.svg" alt="Figure 7"></p>
 
                     
                     </section>
@@ -428,10 +428,8 @@
         </div>
 
         
-        <a href="../model/where_is_data_stored.html" class="navigation navigation-prev " aria-label="Previous page: Where Is Data Stored"><i class="fa fa-angle-left"></i></a>
+        <a href="../client/write_requests.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Write Requests"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../replication/data_replication.html" class="navigation navigation-next " aria-label="Next page: Data Replication"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

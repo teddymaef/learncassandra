@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Indexing | Learn Cassandra</title>
+        <title>Where Is Data Stored | Learn Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../replication/data_replication.html" />
+        <link rel="next" href="../model/indexing.html" />
         
         
-        <link rel="prev" href="../model/where_is_data_stored.html" />
+        <link rel="prev" href="../model/cql_and_data_structure.html" />
         
 
-        <meta property="og:title" content="Indexing | Learn Cassandra">
+        <meta property="og:title" content="Where Is Data Stored | Learn Cassandra">
         <meta property="og:site_name" content="Learn Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1400655786034">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.4" data-basepath=".." data-revision="1400655786034">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -136,7 +136,7 @@
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/indexing.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/where_is_data_stored.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -343,7 +343,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 50%;min-width: 45%;"></div>
+        <div class="inner" style="width: 45%;min-width: 40%;"></div>
     </div>
     <div class="chapters">
     
@@ -367,7 +367,7 @@
     
         <a href="../model/where_is_data_stored.html" title="Where Is Data Stored" class="chapter done " data-progress="2.4" style="left: 45%;"></a>
     
-        <a href="../model/indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
+        <a href="../model/indexing.html" title="Indexing" class="chapter  " data-progress="2.5" style="left: 50%;"></a>
     
         <a href="../replication/data_replication.html" title="Data Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
     
@@ -394,30 +394,47 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_14">
+                    <section class="normal" id="section-gitbook_17">
                     
-                        <h1 id="indexing">Indexing</h1>
-<p><sup><a href="#ref_1">1</a></sup>An index (former name: secondary index) provides means to access data in Cassandra using non-primary key fields other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditionally query by the column.</p>
-<p>An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed. The data of an index is local only, which means it will not be replicated to other nodes.</p>
-<p><strong>Caution:</strong></p>
+                        <h1 id="where-is-data-stored">Where Is Data Stored</h1>
+<p>For each column family, there are 3 layer of data stores: memtable, commit log and SSTable.</p>
+<p><sup><a href="#ref_1">1</a></sup>For efficiency, Cassandra does not repeat the names of the columns in memory or in the SSTable. For example, data is inserted using these CQL statements:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> k1.t1 (c1) <span class="hljs-keyword">VALUES</span> (v1);</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> k2.t1 (c1, c2) <span class="hljs-keyword">VALUES</span> (v1, v2);</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> k1.t1 (c1, c3, c2) <span class="hljs-keyword">VALUES</span> (v4, v3, v2);</span>
+</code></pre>
+<p>In the memtable, Cassandra stores this data:</p>
+<pre><code class="lang-text">k1 c1:v4 c2:v2 c3:v3
+k2 c1:v1 c2:v2
+</code></pre>
+<p>In the commit log on disk, Cassandra stores this data:</p>
+<pre><code class="lang-text">k1, c1:v1
+k2, c1:v1 C2:v2
+k1, c1:v4 c3:v3 c2:v2
+</code></pre>
+<p>In the SSTable on disk, Cassandra stores this data after flushing the memtable:</p>
+<pre><code class="lang-text">k1 c1:v4 c2:v2 c3:v3
+k2 c1:v1 c2:v2
+</code></pre>
+<p><img src="..\assets\flush_memtable.png" alt="Figure 1"></p>
+<h2 id="the-write-path">The Write Path</h2>
+<p>When a write occurs, Cassandra stores the data in a structure in memory, the memtable, and also appends writes to the commit log on disk.</p>
+<p>The memtable is a write-back cache of data partitions that Cassandra looks up by key. The more a table is used, the larger its memtable needs to be. Cassandra can dynamically allocate the right amount of memory for the memtable or you can manage the amount of memory being utilized yourself. The memtable, unlike a write-through cache, stores writes until reaching a limit, and then is flushed.</p>
+<p>When memtable contents exceed a configurable threshold, the memtable data, which includes indexes, is put in a queue to be flushed to disk. To flush the data, Cassandra sorts memtables by partition key and then writes the data to disk sequentially. The process is extremely fast because it involves only a commitlog append and the sequential write.</p>
+<p>The memtable data is flushed to SSTables on disk using sequential I/O. Data in the commit log is purged after its corresponding data in the memtable is flushed to the SSTable.</p>
+<p>SSTables are immutable, not written to again after the memtable is flushed. Consequently, a partition is typically stored across multiple SSTable files So, if a row is not in memtable, a read of the row needs look-up in all the SSTable files. This is why read in Cassandra is much slower than write.</p>
+<h2 id="compaction">Compaction</h2>
+<p>To improve read performance as well as to utilize disk space, Cassandra periodically does compaction to create &amp; use new consolidated SSTable files instead of multiple old SSTables.</p>
+<p><sup><a href="#ref_2">2</a></sup>You can configure two types of compaction to run periodically: SizeTieredCompactionStrategy and LeveledCompactionStrategy.</p>
 <ul>
-<li>By the current version (2.0.7) of Apache Cassandra, you could only query by an indexed column with equality comparison condition. Range select or order-by by an indexed column is not supported. The reason is the keys stored in the hidden column family are unsorted.</li>
-<li>All the data of the hidden column family of an index is only stored locally on each node, which means to query by an indexed column, the requests are sent to all the nodes, waiting for all the resonses, and then the results are merged. So if you have many nodes, the query response slows down as more machines are added to the cluster..</li>
+<li>SizeTieredCompactionStrategy is designed for write-intensive workloads</li>
+<li>LeveledCompactionStrategy for read-intensive workloads</li>
 </ul>
-<h2 id="when-to-use-an-index-">When to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Cassandra&#39;s built-in indexes are best on a table having many rows that contain the indexed value. The more unique values that exist in a particular column, the more overhead you will have for querying and maintaining the index. For example, suppose you had a playlists table with a billion songs and wanted to look up songs by the artist. Many songs will share the same column value for artist. The artist column is a good candidate for an index.</p>
-<h2 id="when-not-to-use-an-index-">When Not to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Do not use an index in these situations:</p>
-<ul>
-<li>On high-cardinality columns because you then query a huge volume of records for a small number of results</li>
-<li>In tables that use a counter column</li>
-<li>On a frequently updated or deleted column</li>
-<li>To look for a row in a large partition unless narrowly queried</li>
-</ul>
+<p>For more information about compaction strategies, see <a href="http://www.datastax.com/dev/blog/when-to-use-leveled-compaction" target="_blank">When to Use Leveled Compaction</a> and <a href="http://www.datastax.com/dev/blog/leveled-compaction-in-apache-cassandra" target="_blank">Leveled Compaction in Apache Cassandra</a>.</p>
 <h2 id="references">References</h2>
 <ol>
-<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html</a></li>
-<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html</a></li>
+<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_stores_data_c.html" target="_blank">http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_stores_data_c.html</a></li>
+<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_write_path_c.html" target="_blank">http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_write_path_c.html</a></li>
 </ol>
 
                     
@@ -428,10 +445,10 @@
         </div>
 
         
-        <a href="../model/where_is_data_stored.html" class="navigation navigation-prev " aria-label="Previous page: Where Is Data Stored"><i class="fa fa-angle-left"></i></a>
+        <a href="../model/cql_and_data_structure.html" class="navigation navigation-prev " aria-label="Previous page: CQL &amp; Data Structure"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../replication/data_replication.html" class="navigation navigation-next " aria-label="Next page: Data Replication"><i class="fa fa-angle-right"></i></a>
+        <a href="../model/indexing.html" class="navigation navigation-next " aria-label="Next page: Indexing"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

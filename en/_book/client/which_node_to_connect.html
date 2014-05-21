@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Indexing | Learn Cassandra</title>
+        <title>Which Node to Connect | Learn Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../replication/data_replication.html" />
+        <link rel="next" href="../client/write_requests.html" />
         
         
-        <link rel="prev" href="../model/where_is_data_stored.html" />
+        <link rel="prev" href="../client/client_requests.html" />
         
 
-        <meta property="og:title" content="Indexing | Learn Cassandra">
+        <meta property="og:title" content="Which Node to Connect | Learn Cassandra">
         <meta property="og:site_name" content="Learn Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1400655786034">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.1" data-basepath=".." data-revision="1400655786034">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -136,7 +136,7 @@
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/indexing.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/client/which_node_to_connect.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -343,7 +343,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 50%;min-width: 45%;"></div>
+        <div class="inner" style="width: 90%;min-width: 85%;"></div>
     </div>
     <div class="chapters">
     
@@ -369,21 +369,21 @@
     
         <a href="../model/indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
     
-        <a href="../replication/data_replication.html" title="Data Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
+        <a href="../replication/data_replication.html" title="Data Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
-        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
+        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
-        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter  " data-progress="3.3" style="left: 70%;"></a>
+        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter done " data-progress="3.3" style="left: 70%;"></a>
     
-        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter  new-chapter" data-progress="4" style="left: 75%;"></a>
+        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter done new-chapter" data-progress="4" style="left: 75%;"></a>
     
-        <a href="../caching/data_caching.html" title="Data Caching" class="chapter  new-chapter" data-progress="5" style="left: 80%;"></a>
+        <a href="../caching/data_caching.html" title="Data Caching" class="chapter done new-chapter" data-progress="5" style="left: 80%;"></a>
     
-        <a href="../client/client_requests.html" title="Client Requests" class="chapter  new-chapter" data-progress="6" style="left: 85%;"></a>
+        <a href="../client/client_requests.html" title="Client Requests" class="chapter done new-chapter" data-progress="6" style="left: 85%;"></a>
     
-        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter  " data-progress="6.1" style="left: 90%;"></a>
+        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter done " data-progress="6.1" style="left: 90%;"></a>
     
         <a href="../client/write_requests.html" title="Write Requests" class="chapter  " data-progress="6.2" style="left: 95%;"></a>
     
@@ -394,30 +394,30 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_14">
+                    <section class="normal" id="section-gitbook_9">
                     
-                        <h1 id="indexing">Indexing</h1>
-<p><sup><a href="#ref_1">1</a></sup>An index (former name: secondary index) provides means to access data in Cassandra using non-primary key fields other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditionally query by the column.</p>
-<p>An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed. The data of an index is local only, which means it will not be replicated to other nodes.</p>
-<p><strong>Caution:</strong></p>
+                        <h1 id="which-node-to-connect">Which Node to Connect</h1>
+<p>Which node to connect depends on the configuration of the client side driver.</p>
+<p>For example, if you are using the <a href="http://www.datastax.com/download" target="_blank">Datastax drivers</a>, there are two main configuration at client side which controls which node to talk to:</p>
 <ul>
-<li>By the current version (2.0.7) of Apache Cassandra, you could only query by an indexed column with equality comparison condition. Range select or order-by by an indexed column is not supported. The reason is the keys stored in the hidden column family are unsorted.</li>
-<li>All the data of the hidden column family of an index is only stored locally on each node, which means to query by an indexed column, the requests are sent to all the nodes, waiting for all the resonses, and then the results are merged. So if you have many nodes, the query response slows down as more machines are added to the cluster..</li>
+<li>Contact points</li>
+<li>Load balancing policies</li>
 </ul>
-<h2 id="when-to-use-an-index-">When to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Cassandra&#39;s built-in indexes are best on a table having many rows that contain the indexed value. The more unique values that exist in a particular column, the more overhead you will have for querying and maintaining the index. For example, suppose you had a playlists table with a billion songs and wanted to look up songs by the artist. Many songs will share the same column value for artist. The artist column is a good candidate for an index.</p>
-<h2 id="when-not-to-use-an-index-">When Not to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Do not use an index in these situations:</p>
-<ul>
-<li>On high-cardinality columns because you then query a huge volume of records for a small number of results</li>
-<li>In tables that use a counter column</li>
-<li>On a frequently updated or deleted column</li>
-<li>To look for a row in a large partition unless narrowly queried</li>
-</ul>
-<h2 id="references">References</h2>
+<h2 id="contact-points">Contact Points</h2>
+<p>Contact points setting is a list of one or many node address. When creating a Cluster instance at client side, the driver tries to connect to the nodes specified in the &quot;contact points&quot; in order. If it fails to connect to the first node, try the next ... As long as one node is successfully connected, it does not try to connect the other nodes anymore.</p>
+<p>Why it is not necessary to connect to all the contact points is because, each node contains the metadata of all the other nodes, meaning as long as one is connected, the driver could get infomation of all the nodes in the cluster. The driver will then use the metadata of the entire cluster got from the connected node to create the connection pool. This also means, it is not necessary to set address of all your nodes to the contact points setting. The best practice is to set the nodes which responds the fastest to the client as contact points.</p>
+<h2 id="load-balancing-policies">Load Balancing Policies</h2>
+<p>By default, a client side Cluster instance manages connections to all the nodes in the cluster and ramdonly connect to one node for any client request, which might not be performant enough, especially when you have multiple data centers.</p>
+<p>For example, if you have a Cluster consists of nodes in two data centers, ont at China and one at US. If your client is at China, you don&#39;t want to connect to a US node, because it might be too slow.</p>
+<p>&quot;Load balancing policies&quot; setting on a Cluster instance determines the strategy of assigning connection of nodes to client requests.</p>
+<p>One of the most commonly used build-in load balancing policy is the DCAwareLoadBalancePolicy, which could make the Cluster only assign connections of the nodes in the specified data center to any client requests.</p>
+<p>You are also allowed to implement your own custom load balanacing policies.</p>
+<h2 id="coodinator">Coodinator</h2>
+<p><sup><a href="#ref_1">1</a></sup>When a client connects to a node and issues a read or write request, that node serves as the coordinator for that particular client operation.</p>
+<p>The job of the coordinator is to act as a proxy between the client application and the nodes (or replicas) that own the data being requested. The coordinator determines which nodes in the ring should get the request based on the cluster configured <a href="../replication/partitioners.html">partitioner</a> and <a href="../replication/replication_strategies.html">replication strategy</a>.</p>
+<h2 id="reference">Reference</h2>
 <ol>
-<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html</a></li>
-<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html</a></li>
+<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsAbout_c.html" target="_blank">http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsAbout_c.html</a></li>
 </ol>
 
                     
@@ -428,10 +428,10 @@
         </div>
 
         
-        <a href="../model/where_is_data_stored.html" class="navigation navigation-prev " aria-label="Previous page: Where Is Data Stored"><i class="fa fa-angle-left"></i></a>
+        <a href="../client/client_requests.html" class="navigation navigation-prev " aria-label="Previous page: Client Requests"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../replication/data_replication.html" class="navigation navigation-next " aria-label="Next page: Data Replication"><i class="fa fa-angle-right"></i></a>
+        <a href="../client/write_requests.html" class="navigation navigation-next " aria-label="Next page: Write Requests"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

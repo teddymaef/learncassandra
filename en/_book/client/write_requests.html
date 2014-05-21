@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Indexing | Learn Cassandra</title>
+        <title>Write Requests | Learn Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../replication/data_replication.html" />
+        <link rel="next" href="../client/read_requests.html" />
         
         
-        <link rel="prev" href="../model/where_is_data_stored.html" />
+        <link rel="prev" href="../client/which_node_to_connect.html" />
         
 
-        <meta property="og:title" content="Indexing | Learn Cassandra">
+        <meta property="og:title" content="Write Requests | Learn Cassandra">
         <meta property="og:site_name" content="Learn Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1400655786034">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.2" data-basepath=".." data-revision="1400655786034">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -136,7 +136,7 @@
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/indexing.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/client/write_requests.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -343,7 +343,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 50%;min-width: 45%;"></div>
+        <div class="inner" style="width: 95%;min-width: 90%;"></div>
     </div>
     <div class="chapters">
     
@@ -369,23 +369,23 @@
     
         <a href="../model/indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
     
-        <a href="../replication/data_replication.html" title="Data Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
+        <a href="../replication/data_replication.html" title="Data Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
-        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
+        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
-        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter  " data-progress="3.3" style="left: 70%;"></a>
+        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter done " data-progress="3.3" style="left: 70%;"></a>
     
-        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter  new-chapter" data-progress="4" style="left: 75%;"></a>
+        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter done new-chapter" data-progress="4" style="left: 75%;"></a>
     
-        <a href="../caching/data_caching.html" title="Data Caching" class="chapter  new-chapter" data-progress="5" style="left: 80%;"></a>
+        <a href="../caching/data_caching.html" title="Data Caching" class="chapter done new-chapter" data-progress="5" style="left: 80%;"></a>
     
-        <a href="../client/client_requests.html" title="Client Requests" class="chapter  new-chapter" data-progress="6" style="left: 85%;"></a>
+        <a href="../client/client_requests.html" title="Client Requests" class="chapter done new-chapter" data-progress="6" style="left: 85%;"></a>
     
-        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter  " data-progress="6.1" style="left: 90%;"></a>
+        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter done " data-progress="6.1" style="left: 90%;"></a>
     
-        <a href="../client/write_requests.html" title="Write Requests" class="chapter  " data-progress="6.2" style="left: 95%;"></a>
+        <a href="../client/write_requests.html" title="Write Requests" class="chapter done " data-progress="6.2" style="left: 95%;"></a>
     
         <a href="../client/read_requests.html" title="Read Requests" class="chapter  " data-progress="6.3" style="left: 100%;"></a>
     
@@ -394,30 +394,19 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_14">
+                    <section class="normal" id="section-gitbook_11">
                     
-                        <h1 id="indexing">Indexing</h1>
-<p><sup><a href="#ref_1">1</a></sup>An index (former name: secondary index) provides means to access data in Cassandra using non-primary key fields other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditionally query by the column.</p>
-<p>An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed. The data of an index is local only, which means it will not be replicated to other nodes.</p>
-<p><strong>Caution:</strong></p>
-<ul>
-<li>By the current version (2.0.7) of Apache Cassandra, you could only query by an indexed column with equality comparison condition. Range select or order-by by an indexed column is not supported. The reason is the keys stored in the hidden column family are unsorted.</li>
-<li>All the data of the hidden column family of an index is only stored locally on each node, which means to query by an indexed column, the requests are sent to all the nodes, waiting for all the resonses, and then the results are merged. So if you have many nodes, the query response slows down as more machines are added to the cluster..</li>
-</ul>
-<h2 id="when-to-use-an-index-">When to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Cassandra&#39;s built-in indexes are best on a table having many rows that contain the indexed value. The more unique values that exist in a particular column, the more overhead you will have for querying and maintaining the index. For example, suppose you had a playlists table with a billion songs and wanted to look up songs by the artist. Many songs will share the same column value for artist. The artist column is a good candidate for an index.</p>
-<h2 id="when-not-to-use-an-index-">When Not to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Do not use an index in these situations:</p>
-<ul>
-<li>On high-cardinality columns because you then query a huge volume of records for a small number of results</li>
-<li>In tables that use a counter column</li>
-<li>On a frequently updated or deleted column</li>
-<li>To look for a row in a large partition unless narrowly queried</li>
-</ul>
-<h2 id="references">References</h2>
+                        <h1 id="write-requests">Write Requests</h1>
+<p><sup><a href="#ref_1">1</a></sup>For nodes in the same local data center of the coordinator, the coordinator sends a write request to all replicas that own the row being written. As long as all replica nodes are up and available, they will get the write regardless of the <a href="../replication/turnable_consistency.html">consistency level</a> specified by the client. The write consistency level determines how many replica nodes must respond with a success acknowledgment in order for the write to be considered successful.</p>
+<p>For example, in a single data center 10 node cluster with a replication factor of 3, an incoming write will go to all 3 nodes that own the requested row. If the write consistency level specified by the client is ONE, the first node to complete the write responds back to the coordinator, which then proxies the success message back to the client. When a node writes and responds, that means it has written to the commit log and puts the mutation into a memtable.</p>
+<p><img src="..\assets\write_access.png" alt="Figure 1"></p>
+<p><sup><a href="#ref_2">2</a></sup>In multiple data center deployments, Cassandra optimizes write performance by choosing one coordinator node in each remote data center to handle the requests to replicas within that data center. The coordinator node contacted by the client application only needs to forward the write request to one node in each remote data center.</p>
+<p>If using a consistency level of ONE or LOCAL_QUORUM, only the nodes in the same data center as the coordinator node must respond to the client request in order for the request to succeed. This way, geographical latency does not impact client request response times.</p>
+<p><img src="..\assets\write_access_multidc.png" alt="Figure 2"></p>
+<h2 id="reference">Reference</h2>
 <ol>
-<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html</a></li>
-<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html</a></li>
+<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsWrite.html" target="_blank">http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsWrite.html</a></li>
+<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsMultiDCWrites_c.html" target="_blank">http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsMultiDCWrites_c.html</a></li>
 </ol>
 
                     
@@ -428,10 +417,10 @@
         </div>
 
         
-        <a href="../model/where_is_data_stored.html" class="navigation navigation-prev " aria-label="Previous page: Where Is Data Stored"><i class="fa fa-angle-left"></i></a>
+        <a href="../client/which_node_to_connect.html" class="navigation navigation-prev " aria-label="Previous page: Which Node to Connect"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../replication/data_replication.html" class="navigation navigation-next " aria-label="Next page: Data Replication"><i class="fa fa-angle-right"></i></a>
+        <a href="../client/read_requests.html" class="navigation navigation-next " aria-label="Next page: Read Requests"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -1,8 +1,8 @@
 # Indexing
 
-<sup>[1](#ref_1)</sup>An index provides a means to access data in Cassandra using attributes other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditional query by the column.
+<sup>[1](#ref_1)</sup>An index (former name: secondary index) provides means to access data in Cassandra using non-primary key fields other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditionally query by the column.
 
-An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed.
+An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed. The data of an index is local only, which means it will not be replicated to other nodes.
 
 **Caution:**
 

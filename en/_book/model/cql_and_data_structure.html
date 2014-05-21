@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Indexing | Learn Cassandra</title>
+        <title>CQL &amp; Data Structure | Learn Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../replication/data_replication.html" />
+        <link rel="next" href="../model/where_is_data_stored.html" />
         
         
-        <link rel="prev" href="../model/where_is_data_stored.html" />
+        <link rel="prev" href="../model/cql.html" />
         
 
-        <meta property="og:title" content="Indexing | Learn Cassandra">
+        <meta property="og:title" content="CQL &amp; Data Structure | Learn Cassandra">
         <meta property="og:site_name" content="Learn Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1400655786034">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.3" data-basepath=".." data-revision="1400655786034">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -136,7 +136,7 @@
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/indexing.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/cql_and_data_structure.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -343,7 +343,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 50%;min-width: 45%;"></div>
+        <div class="inner" style="width: 40%;min-width: 35%;"></div>
     </div>
     <div class="chapters">
     
@@ -365,9 +365,9 @@
     
         <a href="../model/cql_and_data_structure.html" title="CQL &amp; Data Structure" class="chapter done " data-progress="2.3" style="left: 40%;"></a>
     
-        <a href="../model/where_is_data_stored.html" title="Where Is Data Stored" class="chapter done " data-progress="2.4" style="left: 45%;"></a>
+        <a href="../model/where_is_data_stored.html" title="Where Is Data Stored" class="chapter  " data-progress="2.4" style="left: 45%;"></a>
     
-        <a href="../model/indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
+        <a href="../model/indexing.html" title="Indexing" class="chapter  " data-progress="2.5" style="left: 50%;"></a>
     
         <a href="../replication/data_replication.html" title="Data Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
     
@@ -394,30 +394,131 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_14">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h1 id="indexing">Indexing</h1>
-<p><sup><a href="#ref_1">1</a></sup>An index (former name: secondary index) provides means to access data in Cassandra using non-primary key fields other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditionally query by the column.</p>
-<p>An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed. The data of an index is local only, which means it will not be replicated to other nodes.</p>
-<p><strong>Caution:</strong></p>
+                        <h1 id="cql-data-structure-">CQL &amp; Data Structure?</h1>
+<p>The recommended API for creating schemas in Cassandra since 0.7 is via CQL. But Cassandra encourages developer to share schema information to achieve more transparency. Why? Because although CQL looks very much like SQL, they don&#39;t work in a similar way internally. Remember, for each column family, don’t think of a relational table. Instead, think of a nested sorted map data structure.</p>
+<h2 id="a-simple-example">A Simple Example</h2>
+<p>For example, creating ColumnFamily(Table) with CQL:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (
+    field1 <span class="hljs-keyword">int</span> <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
+    field2 <span class="hljs-keyword">int</span>,
+    field3 <span class="hljs-keyword">int</span>);</span>
+</code></pre>
+<p>And insert a few example rows:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (field1, field2, field3) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (field1, field2, field3) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (field1, field2, field3) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>);</span>
+</code></pre>
+<p>How is the data stored?</p>
+<pre><code class="lang-text">RowKey: 1
+=&gt; (column=, value=, timestamp=1374546754299000)
+=&gt; (column=field2, value=00000002, timestamp=1374546754299000)
+=&gt; (column=field3, value=00000003, timestamp=1374546754299000)
+-------------------
+RowKey: 4
+=&gt; (column=, value=, timestamp=1374546757815000)
+=&gt; (column=field2, value=00000005, timestamp=1374546757815000)
+=&gt; (column=field3, value=00000006, timestamp=1374546757815000)
+-------------------
+RowKey: 7
+=&gt; (column=, value=, timestamp=1374546761055000)
+=&gt; (column=field2, value=00000008, timestamp=1374546761055000)
+=&gt; (column=field3, value=00000009, timestamp=1374546761055000)
+</code></pre>
+<p>For each item above, there are 3 important things to look at: the row key (RowKey: &lt;?&gt;), the column name (column=&lt;?&gt;) and the column value (value=&lt;?&gt;). From these examples, we can make a couple of initial observations about the mapping from CQL statements to their internal representations.</p>
 <ul>
-<li>By the current version (2.0.7) of Apache Cassandra, you could only query by an indexed column with equality comparison condition. Range select or order-by by an indexed column is not supported. The reason is the keys stored in the hidden column family are unsorted.</li>
-<li>All the data of the hidden column family of an index is only stored locally on each node, which means to query by an indexed column, the requests are sent to all the nodes, waiting for all the resonses, and then the results are merged. So if you have many nodes, the query response slows down as more machines are added to the cluster..</li>
+<li>The value of the CQL primary key is used internally as the row key (which in the new CQL paradigm is being called a “partition key”)</li>
+<li>The names of the non-primary key CQL fields are used internally as columns names, and the values of the non-primary key CQL fields are then internally stored as the corresponding column values</li>
+<li>The columns of each <em>RowKey</em> is sorted by column names</li>
 </ul>
-<h2 id="when-to-use-an-index-">When to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Cassandra&#39;s built-in indexes are best on a table having many rows that contain the indexed value. The more unique values that exist in a particular column, the more overhead you will have for querying and maintaining the index. For example, suppose you had a playlists table with a billion songs and wanted to look up songs by the artist. Many songs will share the same column value for artist. The artist column is a good candidate for an index.</p>
-<h2 id="when-not-to-use-an-index-">When Not to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Do not use an index in these situations:</p>
+<p>You may have also noticed that these rows all contain columns with no column name and no column value. This is not a bug! It’s actually a way of handling the fact that it should be possible to declare the existence of field1=&lt;some number&gt; without necessarily specifying values for field2 or field3.</p>
+<h2 id="a-more-complex-example">A More Complex Example</h2>
+<p>A more complicated example:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (
+    partitionKey1 text,
+    partitionKey2 text,
+    clusterKey1 text,
+    clusterKey2 text,
+    normalField1 text,
+    normalField2 text,
+    <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span> (
+        (partitionKey1, partitionKey2),
+        clusterKey1, clusterKey2
+        )
+    );</span>
+</code></pre>
+<p>Here we’ve named the fields to indicate where they’ll end up in the internal representation. And we’ve also pulled out all the stops. Our primary key is not only compound, but it also uses compound partition keys, (this is represented by the double nesting of the parentheses of the PRIMARY KEY) and compound cluster keys (more on partition vs. cluster keys in a bit).</p>
+<p>And insert a row of data:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (
+    partitionKey1,
+    partitionKey2,
+    clusterKey1,
+    clusterKey2,
+    normalField1,
+    normalField2
+    ) <span class="hljs-keyword">VALUES</span> (
+    <span class="hljs-string">'partitionVal1'</span>,
+    <span class="hljs-string">'partitionVal2'</span>,
+    <span class="hljs-string">'clusterVal1'</span>,
+    <span class="hljs-string">'clusterVal2'</span>,
+    <span class="hljs-string">'normalVal1'</span>,
+    <span class="hljs-string">'normalVal2'</span>);</span>
+</code></pre>
+<p>How is the data stored?</p>
+<pre><code class="lang-test">RowKey: partitionVal1:partitionVal2
+=&gt; (column=clusterVal1:clusterVal2:, value=, timestamp=1374630892473000)
+=&gt; (column=clusterVal1:clusterVal2:normalfield1, value=6e6f726d616c56616c31, timestamp=1374630892473000)
+=&gt; (column=clusterVal1:clusterVal2:normalfield2, value=6e6f726d616c56616c32, timestamp=1374630892473000)
+</code></pre>
 <ul>
-<li>On high-cardinality columns because you then query a huge volume of records for a small number of results</li>
-<li>In tables that use a counter column</li>
-<li>On a frequently updated or deleted column</li>
-<li>To look for a row in a large partition unless narrowly queried</li>
+<li>Looking at <em>partitionVal1</em> and <em>partitionVal2</em> we see that these are concatenated together and used internally as the <em>RowKey</em> (a.k.a. the partition key)</li>
+<li><em>clusterVal1</em> and <em>clusterVal2</em> are concatenated together and used in the names of each of the non-primary key columns</li>
+<li>The actual values of <em>normalfield1</em> and <em>normalfield2</em> are encoded as the values of columns <em>clusterVal1:clusterVal2:normalfield1</em> and <em>clusterVal1:clusterVal2:normalfield2</em> respectively, that <em>is6e6f726d616c56616c31</em> becomes <em>normalVal1</em> and <em>6e6f726d616c56616c32</em> becomes <em>normalVal2</em></li>
+<li>The columns of each <em>RowKey</em> is sorted by column names, and since the values of <em>clusterKey1</em> and <em>clusterKey2</em> are part of the column names, they are actually sorted by values of <em>clusterKey1</em> and <em>clusterKey2</em> first, and then the original column names specified in CQL</li>
+</ul>
+<h2 id="map-list-set">Map, List &amp; Set</h2>
+<p>An example of how sets, lists, and maps work under the hood:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (
+    key1 text <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
+    map1 map&lt;text,text&gt;,
+    list1 list&lt;text&gt;,
+    set1 <span class="hljs-keyword">set</span>&lt;text&gt;
+    );</span>
+</code></pre>
+<p>Insert:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (
+    key1,
+    map1,
+    list1,
+    set1
+    ) <span class="hljs-keyword">VALUES</span> (
+    <span class="hljs-string">'john'</span>,
+    {<span class="hljs-string">'patricia'</span>:<span class="hljs-string">'555-4326'</span>,<span class="hljs-string">'doug'</span>:<span class="hljs-string">'555-1579'</span>},
+    [<span class="hljs-string">'doug'</span>,<span class="hljs-string">'scott'</span>],
+    {<span class="hljs-string">'patricia'</span>,<span class="hljs-string">'scott'</span>}
+    )</span>
+</code></pre>
+<p>How is data stored?</p>
+<pre><code class="lang-text">RowKey: john
+=&gt; (column=, value=, timestamp=1374683971220000)
+=&gt; (column=map1:doug, value=&#39;555-1579&#39;, timestamp=1374683971220000)
+=&gt; (column=map1:patricia, value=&#39;555-4326&#39;, timestamp=1374683971220000)
+=&gt; (column=list1:26017c10f48711e2801fdf9895e5d0f8, value=&#39;doug&#39;, timestamp=1374683971220000)
+=&gt; (column=list1:26017c12f48711e2801fdf9895e5d0f8, value=&#39;scott&#39;, timestamp=1374683971220000)
+=&gt; (column=set1:&#39;patricia&#39;, value=, timestamp=1374683971220000)
+=&gt; (column=set1:&#39;scott&#39;, value=, timestamp=1374683971220000)
+</code></pre>
+<p>Internal column names for map, list and set items have different patterns:</p>
+<ul>
+<li>For map, each item in the map becomes a column, and the column name is the combination of the map column name and the key of the item, the value is the value of the item</li>
+<li>For list, each item in the list becomes a column, and the column name is the combination of the map column name and the UUID of the item order in the list, the value is the value of the item</li>
+<li>For set, each item in the set becomes a column, and the column name is the combination of the map column name and the item value, the value is always empty</li>
 </ul>
 <h2 id="references">References</h2>
 <ol>
-<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html</a></li>
-<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html</a></li>
+<li><a href="http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure/" target="_blank">http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure/</a></li>
+<li><a href="http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure-sets-lists-and-maps/" target="_blank">http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure-sets-lists-and-maps/</a></li>
 </ol>
 
                     
@@ -428,10 +529,10 @@
         </div>
 
         
-        <a href="../model/where_is_data_stored.html" class="navigation navigation-prev " aria-label="Previous page: Where Is Data Stored"><i class="fa fa-angle-left"></i></a>
+        <a href="../model/cql.html" class="navigation navigation-prev " aria-label="Previous page: CQL"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../replication/data_replication.html" class="navigation navigation-next " aria-label="Next page: Data Replication"><i class="fa fa-angle-right"></i></a>
+        <a href="../model/where_is_data_stored.html" class="navigation navigation-next " aria-label="Next page: Where Is Data Stored"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
