@@ -40,7 +40,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1400655901179">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1400657153037">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -105,7 +105,7 @@
 	<a class="jiathis_button_tsina notitle"></a>
 </div>
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1343882460408149" charset="utf-8"></script>
-<script type="text/javascript">var buttons = document.getElementsByClassName('notitle'); for (var i = 0; i < buttons.length; ++i) { buttons[i].title=''; }</script>
+<script type="text/javascript">setTimeout(function(){var buttons = document.getElementsByClassName('notitle'); for (var i = 0; i < buttons.length; ++i) { buttons[i].title=''; }}, 2000)</script>
 <!-- JiaThis Button END -->
 
     <!-- Title -->
@@ -392,7 +392,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_15">
                     
                         <h1 id="read-requests">Read Requests</h1>
 <p>The number of replicas contacted by a client read request is determined by the consistency level specified by the client. The coordinator sends these requests to the replicas that are currently responding the fastest. The nodes contacted respond with the requested data; if multiple nodes are contacted, the rows from each replica are compared in memory to see if they are consistent. If they are not, then the replica that has the most recent data (based on the timestamp) is used by the coordinator to forward the result back to the client.</p>
