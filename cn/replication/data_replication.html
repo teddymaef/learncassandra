@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="3" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="3" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -248,7 +248,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -371,7 +371,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
     
@@ -394,12 +394,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_17">
+                    <section class="normal" id="section-gitbook_15">
                     
                         <h1 id="-replication">数据Replication</h1>
 <p>这一章，我们将介绍数据如何在Cassandra的节点之间进行分发和replicate。</p>
 <p><sup><a href="#ref_1">1</a></sup>Cassandra是一个点对点系统，所以，创建数据副本和数据的分发都是在一组节点之间互相进行的。</p>
-<p>数据是按照column family（table）进行组织。一行数据，通过这一行的partition key唯一标识。 Cassandra使用一致性哈希（consistent hashing）机制在集群里分发数据。每个集群，配置了一个分区器（partitioner）来对每个partition key进行哈希运算。哈希运算的结果决定了，这一行数据应该被保存到哪个节点。</p>
+<p>数据是按照column family（table）进行组织。一行数据，通过这一行的partition key唯一标识。 Cassandra使用一致性哈希（consistent hashing）机制在集群里分发数据。每个集群，配置了一个分区器（partitioner）来对每个partition key进行哈希运算。哈希运算的结果决定了这一行数据应该被保存到哪个节点。</p>
 <p>一行数据的一个副本被称作一个replica。数据第一次被保存，也被称作创建数据的第一个replica。</p>
 <h2 id="-">参考</h2>
 <ol>
@@ -431,7 +431,7 @@
         <a href="../model/indexing.html" class="navigation navigation-prev " aria-label="Previous page: 索引"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../replication/partitioners.html" class="navigation navigation-next " aria-label="Next page: Partitioners"><i class="fa fa-angle-right"></i></a>
+        <a href="../replication/partitioners.html" class="navigation navigation-next " aria-label="Next page: 分区器（Partitioners）"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

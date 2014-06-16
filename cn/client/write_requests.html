@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="6.2" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.2" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -248,7 +248,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -371,7 +371,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
@@ -394,13 +394,13 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_9">
+                    <section class="normal" id="section-gitbook_8">
                     
                         <h1 id="-">写请求</h1>
 <p><sup><a href="#ref_1">1</a></sup>如果所有的节点在同一个数据中心，coordinator会将写请求发到所有的replica。如果所有的replica节点可用，无论客户端指定的<a href="../replication/turnable_consistency.html">consistency level</a>是什么，每一个replica都会处理写请求。写操作的consistency level只决定了coordinator在通知客户端写操作成功之前，多少个replica节点必须返回成功。</p>
-<p>例如，一个但数据中心集群有10个节点，replication factor值为3，一个写请求，会被发给所有的三个replica节点。如果，客户端指定的consistency level是ONE，那么，只要任何一个replica节点通知coordinator写成功，coordinator就会返回客户端写成功。一个节点返回写成功，表示，写数据已经保存到这个节点的内存中的memtable和磁盘上的commit log。</p>
+<p>例如，一个单数据中心集群有10个节点，replication factor值为3，一个写请求，会被发给所有的三个replica节点。如果，客户端指定的consistency level是ONE，那么，只要任何一个replica节点通知coordinator写成功，coordinator就会返回客户端写成功。一个节点返回写成功，表示，写数据已经保存到这个节点的内存中的memtable和磁盘上的commit log。</p>
 <p><img src="..\assets\write_access.png" alt="Figure 1"></p>
-<p><sup><a href="#ref_2">2</a></sup>如果是多数据中心部署，Cassandra为了优化写性能，对于远程数据中心，会在每个远程数据中心的节点中，选择一个作为远程数据中心中的coordinator。对于和远程数据中心里的replica nodes的通信，本地数据中心的coordinator，只需要和每个远程数据中心的这一个coordinator节点通信。</p>
+<p><sup><a href="#ref_2">2</a></sup>如果是多数据中心部署，Cassandra为了优化写性能，对于远程数据中心，会在每个远程数据中心的节点中，选择一个作为远程数据中心中的coordinator。因此，和远程数据中心里的replica nodes的通信，本地数据中心的coordinator，只需要和每个远程数据中心的这一个coordinator节点通信。</p>
 <p>如果使用consistency level ONE或者LOCAL_QUORUM，coordinator只需要和本地数据中心的节点通信。因此，可以避免，跨数据中心的的通信影响写操作性能。</p>
 <p><img src="..\assets\write_access_multidc.png" alt="Figure 2"></p>
 <h2 id="-">参考</h2>

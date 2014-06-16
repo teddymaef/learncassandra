@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="3.2" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="3.2" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -248,7 +248,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -371,7 +371,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
@@ -394,17 +394,17 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_17">
                     
                         <h1 id="replication-">Replication策略</h1>
 <p><sup><a href="#ref_1">1</a></sup>Cassandra在多个节点存储replica来确保可靠性和容错性。Replication策略决定了replica保存到哪些节点。</p>
 <p>replica的总数由replication factor控制。replication factor 1表示一行数据，只会有一个replica，被保存在唯一一个节点上。replication factor 2表示一行数据有两个副本，每个副本保存在不同的节点上。所有的replica同等重要；没有主次replica之分。一般的规则是，replication factor不应该超过集群里的节点数量。不过，可以先增大replication factor，再添加更多节点。如果replication factor配置超过节点数量，写操作会被拒绝。读操作不受影响。</p>
 <p><strong>Cassandra内置了两种类型的replication策略：</strong></p>
 <ul>
-<li>SimpleStrategy：用于单个数据中心。如果有可能以后会有多个数据中心，用NetworkTopologyStrategy</li>
-<li>NetworkTopologyStrategy：对绝大多数部署方式，都强烈推荐该策略。因为今后的扩展更容易</li>
+<li>SimpleStrategy：用于单个数据中心。如果有可能以后会有多个数据中心，应该用NetworkTopologyStrategy</li>
+<li>NetworkTopologyStrategy：对绝大多数部署方式，都强烈推荐该策略，因为今后的扩展更容易</li>
 </ul>
-<p><strong>关于每个数据中心，配置几个replica，一般主要考虑以下两个因素：</strong></p>
+<p><strong>关于每个数据中心应该配置几个replica，一般主要考虑以下两个因素：</strong></p>
 <ul>
 <li>保证读操作没有跨数据中心的延时损耗</li>
 <li>如何处理硬件故障的情形</li>
@@ -441,7 +441,7 @@
         </div>
 
         
-        <a href="../replication/partitioners.html" class="navigation navigation-prev " aria-label="Previous page: Partitioners"><i class="fa fa-angle-left"></i></a>
+        <a href="../replication/partitioners.html" class="navigation navigation-prev " aria-label="Previous page: 分区器（Partitioners）"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../replication/turnable_consistency.html" class="navigation navigation-next " aria-label="Next page: 可调节的一致性"><i class="fa fa-angle-right"></i></a>

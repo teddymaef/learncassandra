@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="6.1" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.1" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -248,7 +248,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -371,7 +371,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
@@ -404,10 +404,10 @@
 <li>Load balancing policies</li>
 </ul>
 <h2 id="contact-points">Contact Points</h2>
-<p>Contact points设置的值是一个或者多个节点IP的列表。当driver在客户端创建Cluster实例时，driver首先会按照指定的顺序尝试连接Contact points中的节点地址。如果第一个节点连接失败，则尝试连接第二个。只要任何一个节点连接成功，则停止尝试连接后面的节点地址。</p>
-<p>为什么，起始不需要连接所有的节点，是因为集群中的任何一个节点，都保存了，集群上所有节点的元数据，也就是说，只要连上一个节点，driver就能得到所有其他节点的配置信息。接下来，driver会使用获得到所有节点的配置信息构造连接池（构造连接池的时候，driver会连接所有的节点，但是，不是根据contact points中指定的节点地址，而是根据从服务端获得的所有节点的元数据）。这也意味着，contact points设置中，不必要指定集群中所有节点的地址。最佳实践是，在contact points中设置相应最快的所有节点的地址。</p>
+<p>Contact points设置的值是一个或者多个节点IP的列表。当driver在客户端创建Cluster实例时，driver首先会按照指定的顺序尝试连接contact points中的节点地址。如果第一个节点连接失败，则尝试连接第二个。只要任何一个节点连接成功，则停止尝试连接后面的节点地址。</p>
+<p>为什么此时不需要连接所有的节点，是因为集群中的任何一个节点都保存了集群上所有节点的元数据，也就是说，只要连上一个节点，driver就能得到所有其他节点的配置信息。接下来，driver会使用获得到所有节点的配置信息构造连接池（构造连接池的时候，driver会连接所有的节点，但是，不是根据contact points中指定的节点地址，而是根据从服务端获得的所有节点的元数据）。这也意味着，contact points设置中，不必要指定集群中所有节点的地址。最佳实践是，在contact points中设置相对于客户端响应最快的所有节点的地址。</p>
 <h2 id="load-balancing-policies">Load Balancing Policies</h2>
-<p>默认情况下，一个客户端的Cluster实例管理了集群中所有节点的连接，并且，将客户端请求随机连接到任意节点。不过，在某些情况下，尤其是多数据中心时，性能可能不是最优的。</p>
+<p>默认情况下，一个客户端的Cluster实例管理了集群中所有节点的连接，并且，将客户端请求随机连接到任意节点。不过，在某些情况下，尤其是多数据中心时，默认行为的性能可能不是最优的。</p>
 <p>例如，如果集群包含两个数据中心，一个在中国，一个在美国。如果客户端在中国，那么，应该避免直接连接美国的节点，不然太慢。</p>
 <p>Cluster实例的Load balancing policies设置，决定了，客户端请求如何分配节点的连接。</p>
 <p>Datastax driver中最常用的内置Load balancing policies是DCAwareLoadBalancePolicy。它可以指定客户端请求只连接到指定的数据中心的节点。</p>

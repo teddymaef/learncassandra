@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.2" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.2" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -248,7 +248,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -371,7 +371,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
     
@@ -394,7 +394,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_11">
+                    <section class="normal" id="section-gitbook_12">
                     
                         <h1 id="cql">CQL</h1>
 <p><sup><a href="#ref_1">1</a></sup>CQL由类似SQL的语句组成，包括修改，查询，保存，变更数据的存储方式等等功能。每一行语句由分号（;）结束。</p>
@@ -407,7 +407,7 @@
 </code></pre>
 <p>这里一共两条语句。每条语句可以写成一行也可以写成多行。</p>
 <h2 id="-">大小写</h2>
-<p>在CQL里，Keyspace，column和table的名称是忽略大小写的，除非用双引号（&quot;）括起来，才是大小写敏感的。如果不用双引号括起来，即使CQL写成大写，也会被保存为小写。</p>
+<p>在CQL里，keyspace，column和table的名称是忽略大小写的，除非用双引号（&quot;）括起来，才是大小写敏感的。如果不用双引号括起来，即使CQL写成大写，也会被保存为小写。</p>
 <p>例如：</p>
 <pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> test (
   Foo <span class="hljs-keyword">int</span> <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
@@ -434,7 +434,7 @@
 <tr>
 <td>bigint</td>
 <td>integers</td>
-<td>64-bit signed long</td>
+<td>64位有符号long</td>
 </tr>
 <tr>
 <td>blob</td>
@@ -444,12 +444,12 @@
 <tr>
 <td>boolean</td>
 <td>booleans</td>
-<td>true or false</td>
+<td>true或false</td>
 </tr>
 <tr>
 <td>counter</td>
 <td>integers</td>
-<td>分布式counter值 (64-bit long)</td>
+<td>分布式counter值 (64位long)</td>
 </tr>
 <tr>
 <td>decimal</td>

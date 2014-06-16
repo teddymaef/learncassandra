@@ -40,7 +40,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -246,7 +246,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -369,7 +369,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
@@ -392,10 +392,10 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_9">
                     
                         <h1 id="-">读请求</h1>
-<p>客户端球请的需要读的replica数量，由客户端指定的consistency level决定。coordinator会将读请求发给相应最快的replica。如果多个节点返回了数据，coordinator会在内存中比较每一列的timestamp，返回合并后的最新的数据。</p>
+<p>客户端请求需要读的replica数量，由客户端指定的consistency level决定。coordinator会将读请求发给响应最快的replica。如果多个节点返回了数据，coordinator会在内存中比较每一列的timestamp，返回合并后的最新的数据。</p>
 <p>为了确保所有的replica对于经常访问的数据的一致性，在每一次读操作返回之后，coordinator会在后台同步所有其他replica上的该行数据，确保每个replica上拥有该行数据的最新版本。</p>
 <h2 id="-">举例</h2>
 <h3 id="-consistency-level-quorum">单数据中心，consistency level QUORUM</h3>
@@ -416,8 +416,8 @@
 <h3 id="-consistency-level-local_one">双数据中心，consistency level LOCAL_ONE</h3>
 <p>如果是双数据中心，replication factor值为3，读操作consistency level为LOCAL_ONE，coordinator访问并返回本地数据中心最近的replica返回的数据。在后台，其他所有数据中心的replica的数据也会被检查，确保该行数据的最新版本在所有replica的一致性。</p>
 <p><img src="..\assets\multipleDCConLocalOne.svg" alt="Figure 6"></p>
-<h3 id="-speculative_retry-rapid-read-protection-">使用speculative_retry做快速度保护（Rapid read protection）</h3>
-<p>快速读保护允许，即使coordinator最开始选择的replica节点down了或者超时，，依然能返回数据。如果一个表配置了speculative_retry参数，假如coordinator最先选择的replica读取超时，coordinator会尝试读取其他可用的replica。</p>
+<h3 id="-speculative_retry-rapid-read-protection-">使用speculative_retry做快速读保护（Rapid read protection）</h3>
+<p>快速读保护允许，即使coordinator最开始选择的replica节点down了或者超时了，依然能返回数据。如果一个表配置了speculative_retry参数，假如coordinator最先选择的replica读取超时，coordinator会尝试读取其他可用的replica代替。</p>
 <p><img src="..\assets\rapidReadProtection.svg" alt="Figure 7"></p>
 
                     

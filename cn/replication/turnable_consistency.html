@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="3.3" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="3.3" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -248,7 +248,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -371,7 +371,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
@@ -394,7 +394,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_20">
+                    <section class="normal" id="section-gitbook_16">
                     
                         <h1 id="-">可调节的一致性</h1>
 <p><sup><a href="#ref_1">1</a></sup>一致性指一行数据的所有replica是否最新和同步。Cassandra扩展了<a href="http://en.wikipedia.org/wiki/Eventual_consistency" target="_blank">最终一致性</a>的概念，对一个读或者写操作，所谓可调节的一致性的概念，指发起请求的客户端，可以通过consistency level参数，指定本次请求，需要的一致性。</p>
@@ -460,7 +460,7 @@
 <tbody>
 <tr>
 <td>ALL</td>
-<td>向所有replica节点查询数据，返回所有的replica返回的数据中，时间戳最新的数据。如果某个replica节点没有相应，读操作会失败。</td>
+<td>向所有replica节点查询数据，返回所有的replica返回的数据中，timestamp最新的数据。如果某个replica节点没有响应，读操作会失败。</td>
 <td>相对于其他级别，提供最高的一致性和最低的可用性。</td>
 </tr>
 <tr>

@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.3" data-basepath=".." data-revision="1402890414739">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.3" data-basepath=".." data-revision="1402893325164">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -248,7 +248,7 @@
                         <li  data-level="3.1" data-path="replication/partitioners.html">
                             
                             <a href="../replication/partitioners.html">
-                                <i class="fa fa-check"></i> <b>3.1.</b> Partitioners
+                                <i class="fa fa-check"></i> <b>3.1.</b> 分区器（Partitioners）
                             </a>
                             
                         </li>
@@ -371,7 +371,7 @@
     
         <a href="../replication/data_replication.html" title="数据Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
     
-        <a href="../replication/partitioners.html" title="Partitioners" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
+        <a href="../replication/partitioners.html" title="分区器（Partitioners）" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
     
         <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
     
@@ -394,7 +394,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_12">
+                    <section class="normal" id="section-gitbook_13">
                     
                         <h1 id="cql-">CQL &amp; 数据架构</h1>
 <p>从Cassandra 0.7开始，推荐使用CQL来创建column family结构。
@@ -430,7 +430,7 @@ RowKey: 7
 <p>对于每一个插入的行，有三点需要注意：row key (RowKey: &lt;?&gt;)，列名(column=&lt;?&gt;)和列值(value=&lt;?&gt;)。从上面的例子，我们可以做出一些基本的关于CQL如何映射到Cassandra内部存储结构的总结：</p>
 <ul>
 <li>row key的值是CQL中定义的主键的值。（在CQL术语里面，row key被称作“partition key”）</li>
-<li>CQL中的非主键的字段的字段名，映射到内部的列名，字段值映射到内部的列值</li>
+<li>CQL中的非主键字段的字段名，映射到内部的列名，字段值映射到内部的列值</li>
 <li>每一个<em>RowKey</em>下的左右字段，是按列名排序存储的</li>
 </ul>
 <p>你可能也注意到了，每一个row，都有一个列，列名和列值都为空。这并不是bug。事实上这是为了支持只有row key字段有值，而没有任何其他列有值的情况。</p>
