@@ -5,10 +5,10 @@
 replica的总数由replication factor控制。replication factor 1表示一行数据，只会有一个replica，被保存在唯一一个节点上。replication factor 2表示一行数据有两个副本，每个副本保存在不同的节点上。所有的replica同等重要；没有主次replica之分。一般的规则是，replication factor不应该超过集群里的节点数量。不过，可以先增大replication factor，再添加更多节点。如果replication factor配置超过节点数量，写操作会被拒绝。读操作不受影响。
 
 **Cassandra内置了两种类型的replication策略：**
-* SimpleStrategy：用于单个数据中心。如果有可能以后会有多个数据中心，用NetworkTopologyStrategy
-* NetworkTopologyStrategy：对绝大多数部署方式，都强烈推荐该策略。因为今后的扩展更容易
+* SimpleStrategy：用于单个数据中心。如果有可能以后会有多个数据中心，应该用NetworkTopologyStrategy
+* NetworkTopologyStrategy：对绝大多数部署方式，都强烈推荐该策略，因为今后的扩展更容易
 
-**关于每个数据中心，配置几个replica，一般主要考虑以下两个因素：**
+**关于每个数据中心应该配置几个replica，一般主要考虑以下两个因素：**
 
 * 保证读操作没有跨数据中心的延时损耗
 * 如何处理硬件故障的情形

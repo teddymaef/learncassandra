@@ -24,7 +24,7 @@
 
 | 级别 | 描述 | 用法 |
 | -- | -- | -- |
-| ALL | 向所有replica节点查询数据，返回所有的replica返回的数据中，时间戳最新的数据。如果某个replica节点没有相应，读操作会失败。| 相对于其他级别，提供最高的一致性和最低的可用性。|
+| ALL | 向所有replica节点查询数据，返回所有的replica返回的数据中，timestamp最新的数据。如果某个replica节点没有响应，读操作会失败。| 相对于其他级别，提供最高的一致性和最低的可用性。|
 | EACH_QUORUM | 向每个数据中心内quorum数量的replica节点查询数据，返回时间戳最新的数据。| 同LOCAL_QUORUM。|
 | LOCAL_SERIAL | 同SERIAL，但是只限制为本地数据中心。| 同SERIAL。|
 | LOCAL_QUORUM | 向每个数据中心内quorum数量的replica节点查询数据，返回时间戳最新的数据。避免跨数据中心的通信。| 使用SimpleStrategy时会失败。|

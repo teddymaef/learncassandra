@@ -1,6 +1,6 @@
 # 读请求
 
-客户端球请的需要读的replica数量，由客户端指定的consistency level决定。coordinator会将读请求发给相应最快的replica。如果多个节点返回了数据，coordinator会在内存中比较每一列的timestamp，返回合并后的最新的数据。
+客户端请求需要读的replica数量，由客户端指定的consistency level决定。coordinator会将读请求发给响应最快的replica。如果多个节点返回了数据，coordinator会在内存中比较每一列的timestamp，返回合并后的最新的数据。
 
 为了确保所有的replica对于经常访问的数据的一致性，在每一次读操作返回之后，coordinator会在后台同步所有其他replica上的该行数据，确保每个replica上拥有该行数据的最新版本。
 
@@ -42,8 +42,8 @@
 
 ![Figure 6](../assets/multipleDCConLocalOne.svg)
 
-### 使用speculative_retry做快速度保护（Rapid read protection）
+### 使用speculative_retry做快速读保护（Rapid read protection）
 
-快速读保护允许，即使coordinator最开始选择的replica节点down了或者超时，，依然能返回数据。如果一个表配置了speculative_retry参数，假如coordinator最先选择的replica读取超时，coordinator会尝试读取其他可用的replica。
+快速读保护允许，即使coordinator最开始选择的replica节点down了或者超时了，依然能返回数据。如果一个表配置了speculative_retry参数，假如coordinator最先选择的replica读取超时，coordinator会尝试读取其他可用的replica代替。
 
 ![Figure 7](../assets/rapidReadProtection.svg)

@@ -39,11 +39,11 @@ k2 c1:v1 c2:v2
 
 memtable中的数据在被写入SSTable之后，commit log会被清空。commit log的作用是，当发生硬件故障时，用来自动重建memtable中还没有保存到SSTable的数据。
 
-SSTables是不可变的，也就是说，当memtable被刷新和保存为一个SSTable文件之后，SSTable不会被再次写入。因此，一个分许一般会被保存为多个SSTable文件。所以，如果某一行数据不在memtable里，对这行数据的读写需要遍历所有的SSTable。这也是为什么Cassandra的读要比写慢的原因。
+SSTables是不可变的，也就是说，当memtable被刷新和保存为一个SSTable文件之后，SSTable不会被再次写入。因此，一个分区一般会被保存为多个SSTable文件。所以，如果某一行数据不在memtable里，对这行数据的读写需要遍历所有的SSTable。这也是为什么Cassandra的读要比写慢的原因。
 
 ## 数据压缩（Compaction）
 
-为了提升读的性能和释放磁盘空间，Cassandra会周期性的通过合并多个SSTable文件中相同partition key的数据的方式进行做数据压缩。
+为了提升读的性能和释放磁盘空间，Cassandra会周期性地通过合并多个SSTable文件中相同partition key的数据的方式进行做数据压缩。
 
 <sup>[2](#ref_2)</sup>Cassandra内建了两种数据压缩策略： SizeTieredCompactionStrategy和LeveledCompactionStrategy.
 

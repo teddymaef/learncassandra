@@ -4,9 +4,9 @@ Cassandra并不支持类似关系型数据库的基于回滚和锁机制实现AC
 
 ## 轻量级事务
 
-<sup>[1](#ref_1)</sup>尽管持久化事务和[可调节的一致性](../replication/turnable_consistency.html)已经可以满足许多用例，有一些情况，确实需要更强的原子控制。轻量级事务（lightweight transaction），又称（compare and set），使用线性化（linearizable）的一致性来满足高需求。
+<sup>[1](#ref_1)</sup>尽管持久化事务和[可调节的一致性](../replication/turnable_consistency.html)已经可以满足许多用例，有一些情况，确实需要更强的原子控制。轻量级事务（lightweight transaction），又称（compare and set），使用线性化（linearizable）的一致性来满足需求。
 
-例如，如果想确保插入一个用户帐号的唯一性，可以使用IF NOT EXISTS语句：
+例如，如果想确保一个用户帐号插入的唯一性，可以使用IF NOT EXISTS语句：
 
 ```SQL
 INSERT INTO customer_account (customerID, customer_email)
@@ -23,7 +23,7 @@ UPDATE customer_account
 ```
 在后台，Cassandra需要在发起事务的节点和集群中的其它节点之间有4次应答实现一个事务。所以，轻量级事务，对性能有影响。因此，只在绝对必要时，才应该使用轻量级事务，其他情况，一般都能通过[可调节的一致性](../replication/turnable_consistency.html)实现。
 
-注意，[SERIAL一致性级别](../replication/turnable_consistency.html) 允许当前数据，包括uncommitted的数据。
+注意，[SERIAL一致性级别](../replication/turnable_consistency.html) 允许读取当前数据，包括uncommitted的数据。
 
 ## 原子化（Atomicity）
 

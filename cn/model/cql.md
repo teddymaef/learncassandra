@@ -14,7 +14,7 @@ UPDATE MyTable
 
 ## 大小写
 
-在CQL里，Keyspace，column和table的名称是忽略大小写的，除非用双引号（"）括起来，才是大小写敏感的。如果不用双引号括起来，即使CQL写成大写，也会被保存为小写。
+在CQL里，keyspace，column和table的名称是忽略大小写的，除非用双引号（"）括起来，才是大小写敏感的。如果不用双引号括起来，即使CQL写成大写，也会被保存为小写。
 
 例如：
 ```SQL
@@ -32,10 +32,10 @@ CQL的关键字都是忽略大小写的。例如，关键字SELECT和select是�
 | CQL类型 | 常量类型 | 说明 |
 | -- | -- | -- |
 | ascii | strings | US-ASCII字符串 |
-| bigint | integers | 64-bit signed long |
+| bigint | integers | 64位有符号long |
 | blob | blobs | 任意的16进制格式的bytes |
-| boolean | booleans | true or false |
-| counter | integers | 分布式counter值 (64-bit long) |
+| boolean | booleans | true或false |
+| counter | integers | 分布式counter值 (64位long) |
 | decimal | integers, floats | 可变精度浮点数 |
 | double | integers, floats | 64位IEEE-754浮点数 |
 | float | integers, floats | 3位IEEE-754浮点数 |
