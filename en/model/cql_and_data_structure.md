@@ -1,4 +1,4 @@
-# CQL & Data Structure?
+# CQL & Data Structure
 
 The recommended API for creating schemas in Cassandra since 0.7 is via CQL. But Cassandra encourages developer to share schema information to achieve more transparency. Why? Because although CQL looks very much like SQL, they don't work in a similar way internally. Remember, for each column family, don’t think of a relational table. Instead, think of a nested sorted map data structure.
 
@@ -82,7 +82,7 @@ INSERT INTO example (
 ```
 How is the data stored?
 
-```test
+```text
 RowKey: partitionVal1:partitionVal2
 => (column=clusterVal1:clusterVal2:, value=, timestamp=1374630892473000)
 => (column=clusterVal1:clusterVal2:normalfield1, value=6e6f726d616c56616c31, timestamp=1374630892473000)
@@ -137,8 +137,8 @@ RowKey: john
 
 Internal column names for map, list and set items have different patterns:
 * For map, each item in the map becomes a column, and the column name is the combination of the map column name and the key of the item, the value is the value of the item
-* For list, each item in the list becomes a column, and the column name is the combination of the map column name and the UUID of the item order in the list, the value is the value of the item
-* For set, each item in the set becomes a column, and the column name is the combination of the map column name and the item value, the value is always empty
+* For list, each item in the list becomes a column, and the column name is the combination of the list column name and the UUID of the item order in the list, the value is the value of the item
+* For set, each item in the set becomes a column, and the column name is the combination of the set column name and the item value, the value is always empty
 
 ## References
 

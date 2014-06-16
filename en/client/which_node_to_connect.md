@@ -17,7 +17,7 @@ Why it is not necessary to connect to all the contact points is because, each no
 
 By default, a client side Cluster instance manages connections to all the nodes in the cluster and ramdonly connect to one node for any client request, which might not be performant enough, especially when you have multiple data centers.
 
-For example, if you have a Cluster consists of nodes in two data centers, ont at China and one at US. If your client is at China, you don't want to connect to a US node, because it might be too slow.
+For example, if you have a Cluster consists of nodes in two data centers, one at China and one at US. If your client is at China, you don't want to connect to a US node, because it might be too slow.
 
 "Load balancing policies" setting on a Cluster instance determines the strategy of assigning connection of nodes to client requests.
 

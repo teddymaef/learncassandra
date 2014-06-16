@@ -37,7 +37,7 @@ The memtable is a write-back cache of data partitions that Cassandra looks up by
 
 When memtable contents exceed a configurable threshold, the memtable data, which includes indexes, is put in a queue to be flushed to disk. To flush the data, Cassandra sorts memtables by partition key and then writes the data to disk sequentially. The process is extremely fast because it involves only a commitlog append and the sequential write.
 
-The memtable data is flushed to SSTables on disk using sequential I/O. Data in the commit log is purged after its corresponding data in the memtable is flushed to the SSTable.
+Data in the commit log is purged after its corresponding data in the memtable is flushed to the SSTable. The commit log is for recovering the data in memtable in the event of a hardware failure.
 
 SSTables are immutable, not written to again after the memtable is flushed. Consequently, a partition is typically stored across multiple SSTable files So, if a row is not in memtable, a read of the row needs look-up in all the SSTable files. This is why read in Cassandra is much slower than write.
 
