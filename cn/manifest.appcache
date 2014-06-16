@@ -1,8 +1,28 @@
 CACHE MANIFEST
-# Revision 1400034851227
+# Revision 1402890414740
 
 CACHE:
 index.html
+about/about_cassandra.html
+about/the_history_of_cassandra.html
+about/the_cap_theorem.html
+about/what_can_cassandra_do.html
+caching/data_caching.html
+client/client_requests.html
+client/read_requests.html
+client/write_requests.html
+client/which_node_to_connect.html
+model/cql.html
+model/cql_and_data_structure.html
+concurrent/concurrency_control.html
+model/data_model_and_cql.html
+model/internal_data_structure.html
+model/indexing.html
+replication/data_replication.html
+model/where_is_data_stored.html
+replication/partitioners.html
+replication/turnable_consistency.html
+replication/replication_strategies.html
 gitbook\app.js
 gitbook\fonts\anonymouspro\400.woff
 gitbook\fonts\anonymouspro\400i.woff
@@ -31,6 +51,8 @@ gitbook\fonts\opensans\600.woff
 gitbook\fonts\opensans\600i.woff
 gitbook\fonts\opensans\700.woff
 gitbook\fonts\opensans\700i.woff
+gitbook\images\APPL_ ENTER_ MTIUS.PDF
+gitbook\images\VISA_ FORM_MTIUS.PDF
 gitbook\images\favicon.ico
 gitbook\jsrepl\engines\javascript-default.js
 gitbook\jsrepl\jsrepl.js

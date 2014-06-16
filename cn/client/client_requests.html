@@ -3,22 +3,24 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Read Requests | Learn Cassandra</title>
+        <title>客户端请求 | 学习Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
         <meta name="author" content="teddymaef">
-        <meta name="description" content="This book step-by-step guides **developers** to understand what Cassandra is, how Cassandra works and how to use the features and capabilities of Apache Cassandra 2.0.">
+        <meta name="description" content="本书循序渐进的引导**开发人员**理解Cassandra是什么，如何工作以及如何使用Apache Cassandra 2.0的功能。">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
 
         
+        <link rel="next" href="../client/which_node_to_connect.html" />
         
-        <link rel="prev" href="../client/write_requests.html" />
+        
+        <link rel="prev" href="../caching/data_caching.html" />
         
 
-        <meta property="og:title" content="Read Requests | Learn Cassandra">
-        <meta property="og:site_name" content="Learn Cassandra">
+        <meta property="og:title" content="客户端请求 | 学习Cassandra">
+        <meta property="og:site_name" content="学习Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
 
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="6.3" data-basepath=".." data-revision="1402890407028">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6" data-basepath=".." data-revision="1402890414739">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -111,7 +113,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Learn Cassandra</a>
+        <a href="../" >学习Cassandra</a>
     </h1>
 </div>
 
@@ -134,7 +136,7 @@
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/client/read_requests.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/client/client_requests.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -147,7 +149,7 @@
             <li  data-level="1" data-path="about/about_cassandra.html">
                 
                 <a href="../about/about_cassandra.html">
-                    <i class="fa fa-check"></i> <b>1.</b> About Cassandra
+                    <i class="fa fa-check"></i> <b>1.</b> 关于Cassandra
                 </a>
                 
                 
@@ -156,7 +158,7 @@
                         <li  data-level="1.1" data-path="about/the_history_of_cassandra.html">
                             
                             <a href="../about/the_history_of_cassandra.html">
-                                <i class="fa fa-check"></i> <b>1.1.</b> The History of Cassandra
+                                <i class="fa fa-check"></i> <b>1.1.</b> Cassandra的历史
                             </a>
                             
                         </li>
@@ -164,7 +166,7 @@
                         <li  data-level="1.2" data-path="about/the_cap_theorem.html">
                             
                             <a href="../about/the_cap_theorem.html">
-                                <i class="fa fa-check"></i> <b>1.2.</b> The CAP Theorem
+                                <i class="fa fa-check"></i> <b>1.2.</b> CAP定理
                             </a>
                             
                         </li>
@@ -172,7 +174,7 @@
                         <li  data-level="1.3" data-path="about/what_can_cassandra_do.html">
                             
                             <a href="../about/what_can_cassandra_do.html">
-                                <i class="fa fa-check"></i> <b>1.3.</b> What Can Cassandra Do
+                                <i class="fa fa-check"></i> <b>1.3.</b> Cassandra能做什么
                             </a>
                             
                         </li>
@@ -184,7 +186,7 @@
             <li  data-level="2" data-path="model/data_model_and_cql.html">
                 
                 <a href="../model/data_model_and_cql.html">
-                    <i class="fa fa-check"></i> <b>2.</b> Data Model &amp; CQL
+                    <i class="fa fa-check"></i> <b>2.</b> 数据模型 &amp; CQL
                 </a>
                 
                 
@@ -193,7 +195,7 @@
                         <li  data-level="2.1" data-path="model/internal_data_structure.html">
                             
                             <a href="../model/internal_data_structure.html">
-                                <i class="fa fa-check"></i> <b>2.1.</b> Internal Data Structure
+                                <i class="fa fa-check"></i> <b>2.1.</b> 内部数据结构
                             </a>
                             
                         </li>
@@ -209,7 +211,7 @@
                         <li  data-level="2.3" data-path="model/cql_and_data_structure.html">
                             
                             <a href="../model/cql_and_data_structure.html">
-                                <i class="fa fa-check"></i> <b>2.3.</b> CQL &amp; Data Structure
+                                <i class="fa fa-check"></i> <b>2.3.</b> CQL &amp; 数据结构
                             </a>
                             
                         </li>
@@ -217,7 +219,7 @@
                         <li  data-level="2.4" data-path="model/where_is_data_stored.html">
                             
                             <a href="../model/where_is_data_stored.html">
-                                <i class="fa fa-check"></i> <b>2.4.</b> Where Is Data Stored
+                                <i class="fa fa-check"></i> <b>2.4.</b> 数据保存在哪里
                             </a>
                             
                         </li>
@@ -225,7 +227,7 @@
                         <li  data-level="2.5" data-path="model/indexing.html">
                             
                             <a href="../model/indexing.html">
-                                <i class="fa fa-check"></i> <b>2.5.</b> Indexing
+                                <i class="fa fa-check"></i> <b>2.5.</b> 索引
                             </a>
                             
                         </li>
@@ -237,7 +239,7 @@
             <li  data-level="3" data-path="replication/data_replication.html">
                 
                 <a href="../replication/data_replication.html">
-                    <i class="fa fa-check"></i> <b>3.</b> Data Replication
+                    <i class="fa fa-check"></i> <b>3.</b> 数据Replication
                 </a>
                 
                 
@@ -254,7 +256,7 @@
                         <li  data-level="3.2" data-path="replication/replication_strategies.html">
                             
                             <a href="../replication/replication_strategies.html">
-                                <i class="fa fa-check"></i> <b>3.2.</b> Replication Strategies
+                                <i class="fa fa-check"></i> <b>3.2.</b> Replication策略
                             </a>
                             
                         </li>
@@ -262,7 +264,7 @@
                         <li  data-level="3.3" data-path="replication/turnable_consistency.html">
                             
                             <a href="../replication/turnable_consistency.html">
-                                <i class="fa fa-check"></i> <b>3.3.</b> Turnable Consistency
+                                <i class="fa fa-check"></i> <b>3.3.</b> 可调节的一致性
                             </a>
                             
                         </li>
@@ -274,7 +276,7 @@
             <li  data-level="4" data-path="concurrent/concurrency_control.html">
                 
                 <a href="../concurrent/concurrency_control.html">
-                    <i class="fa fa-check"></i> <b>4.</b> Concurrency Control
+                    <i class="fa fa-check"></i> <b>4.</b> 并发控制
                 </a>
                 
                 
@@ -283,7 +285,7 @@
             <li  data-level="5" data-path="caching/data_caching.html">
                 
                 <a href="../caching/data_caching.html">
-                    <i class="fa fa-check"></i> <b>5.</b> Data Caching
+                    <i class="fa fa-check"></i> <b>5.</b> 数据缓存
                 </a>
                 
                 
@@ -292,7 +294,7 @@
             <li  data-level="6" data-path="client/client_requests.html">
                 
                 <a href="../client/client_requests.html">
-                    <i class="fa fa-check"></i> <b>6.</b> Client Requests
+                    <i class="fa fa-check"></i> <b>6.</b> 客户端请求
                 </a>
                 
                 
@@ -301,7 +303,7 @@
                         <li  data-level="6.1" data-path="client/which_node_to_connect.html">
                             
                             <a href="../client/which_node_to_connect.html">
-                                <i class="fa fa-check"></i> <b>6.1.</b> Which Node to Connect
+                                <i class="fa fa-check"></i> <b>6.1.</b> 连接哪个节点
                             </a>
                             
                         </li>
@@ -309,7 +311,7 @@
                         <li  data-level="6.2" data-path="client/write_requests.html">
                             
                             <a href="../client/write_requests.html">
-                                <i class="fa fa-check"></i> <b>6.2.</b> Write Requests
+                                <i class="fa fa-check"></i> <b>6.2.</b> 写请求
                             </a>
                             
                         </li>
@@ -317,7 +319,7 @@
                         <li  data-level="6.3" data-path="client/read_requests.html">
                             
                             <a href="../client/read_requests.html">
-                                <i class="fa fa-check"></i> <b>6.3.</b> Read Requests
+                                <i class="fa fa-check"></i> <b>6.3.</b> 读请求
                             </a>
                             
                         </li>
@@ -341,51 +343,51 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 100%;min-width: 95%;"></div>
+        <div class="inner" style="width: 85%;min-width: 80%;"></div>
     </div>
     <div class="chapters">
     
         <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="../about/about_cassandra.html" title="About Cassandra" class="chapter done new-chapter" data-progress="1" style="left: 5%;"></a>
+        <a href="../about/about_cassandra.html" title="关于Cassandra" class="chapter done new-chapter" data-progress="1" style="left: 5%;"></a>
     
-        <a href="../about/the_history_of_cassandra.html" title="The History of Cassandra" class="chapter done " data-progress="1.1" style="left: 10%;"></a>
+        <a href="../about/the_history_of_cassandra.html" title="Cassandra的历史" class="chapter done " data-progress="1.1" style="left: 10%;"></a>
     
-        <a href="../about/the_cap_theorem.html" title="The CAP Theorem" class="chapter done " data-progress="1.2" style="left: 15%;"></a>
+        <a href="../about/the_cap_theorem.html" title="CAP定理" class="chapter done " data-progress="1.2" style="left: 15%;"></a>
     
-        <a href="../about/what_can_cassandra_do.html" title="What Can Cassandra Do" class="chapter done " data-progress="1.3" style="left: 20%;"></a>
+        <a href="../about/what_can_cassandra_do.html" title="Cassandra能做什么" class="chapter done " data-progress="1.3" style="left: 20%;"></a>
     
-        <a href="../model/data_model_and_cql.html" title="Data Model &amp; CQL" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
+        <a href="../model/data_model_and_cql.html" title="数据模型 &amp; CQL" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
     
-        <a href="../model/internal_data_structure.html" title="Internal Data Structure" class="chapter done " data-progress="2.1" style="left: 30%;"></a>
+        <a href="../model/internal_data_structure.html" title="内部数据结构" class="chapter done " data-progress="2.1" style="left: 30%;"></a>
     
         <a href="../model/cql.html" title="CQL" class="chapter done " data-progress="2.2" style="left: 35%;"></a>
     
-        <a href="../model/cql_and_data_structure.html" title="CQL &amp; Data Structure" class="chapter done " data-progress="2.3" style="left: 40%;"></a>
+        <a href="../model/cql_and_data_structure.html" title="CQL &amp; 数据结构" class="chapter done " data-progress="2.3" style="left: 40%;"></a>
     
-        <a href="../model/where_is_data_stored.html" title="Where Is Data Stored" class="chapter done " data-progress="2.4" style="left: 45%;"></a>
+        <a href="../model/where_is_data_stored.html" title="数据保存在哪里" class="chapter done " data-progress="2.4" style="left: 45%;"></a>
     
-        <a href="../model/indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
+        <a href="../model/indexing.html" title="索引" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
     
-        <a href="../replication/data_replication.html" title="Data Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
+        <a href="../replication/data_replication.html" title="数据Replication" class="chapter done new-chapter" data-progress="3" style="left: 55%;"></a>
     
         <a href="../replication/partitioners.html" title="Partitioners" class="chapter done " data-progress="3.1" style="left: 60%;"></a>
     
-        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
+        <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter done " data-progress="3.2" style="left: 65%;"></a>
     
-        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter done " data-progress="3.3" style="left: 70%;"></a>
+        <a href="../replication/turnable_consistency.html" title="可调节的一致性" class="chapter done " data-progress="3.3" style="left: 70%;"></a>
     
-        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter done new-chapter" data-progress="4" style="left: 75%;"></a>
+        <a href="../concurrent/concurrency_control.html" title="并发控制" class="chapter done new-chapter" data-progress="4" style="left: 75%;"></a>
     
-        <a href="../caching/data_caching.html" title="Data Caching" class="chapter done new-chapter" data-progress="5" style="left: 80%;"></a>
+        <a href="../caching/data_caching.html" title="数据缓存" class="chapter done new-chapter" data-progress="5" style="left: 80%;"></a>
     
-        <a href="../client/client_requests.html" title="Client Requests" class="chapter done new-chapter" data-progress="6" style="left: 85%;"></a>
+        <a href="../client/client_requests.html" title="客户端请求" class="chapter done new-chapter" data-progress="6" style="left: 85%;"></a>
     
-        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter done " data-progress="6.1" style="left: 90%;"></a>
+        <a href="../client/which_node_to_connect.html" title="连接哪个节点" class="chapter  " data-progress="6.1" style="left: 90%;"></a>
     
-        <a href="../client/write_requests.html" title="Write Requests" class="chapter done " data-progress="6.2" style="left: 95%;"></a>
+        <a href="../client/write_requests.html" title="写请求" class="chapter  " data-progress="6.2" style="left: 95%;"></a>
     
-        <a href="../client/read_requests.html" title="Read Requests" class="chapter done " data-progress="6.3" style="left: 100%;"></a>
+        <a href="../client/read_requests.html" title="读请求" class="chapter  " data-progress="6.3" style="left: 100%;"></a>
     
     </div>
 </div>
@@ -394,31 +396,13 @@
                 
                     <section class="normal" id="section-gitbook_7">
                     
-                        <h1 id="read-requests">Read Requests</h1>
-<p>The number of replicas contacted by a client read request is determined by the consistency level specified by the client. The coordinator sends these requests to the replicas that are currently responding the fastest. The nodes contacted respond with the requested data; if multiple nodes are contacted, the rows from each replica are compared in memory to see if they are consistent. If they are not, then the replica that has the most recent data (based on the timestamp) is used by the coordinator to forward the result back to the client.</p>
-<p>To ensure that all replicas have the most recent version of frequently-read data, the coordinator also contacts and compares the data from all the remaining replicas that own the row in the background. If the replicas are inconsistent, the coordinator issues writes to the out-of-date replicas to update the row to the most recent values.</p>
-<h2 id="examples">Examples</h2>
-<h3 id="a-single-data-center-cluster-with-a-consistency-level-of-quorum">A single data center cluster with a consistency level of QUORUM</h3>
-<p>In a single data center cluster with a replication factor of 3, and a read consistency level of QUORUM, 2 of the 3 replicas for the given row must respond to fulfill the read request. If the contacted replicas have different versions of the row, the replica with the most recent version will return the requested data. In the background, the third replica is checked for consistency with the first two, and if needed, a read repair is initiated for the out-of-date replicas.</p>
-<p><img src="..\assets\singleDCConQuorum.svg" alt="Figure 1"></p>
-<h3 id="a-single-data-center-cluster-with-a-consistency-level-of-one">A single data center cluster with a consistency level of ONE</h3>
-<p>In a single data center cluster with a replication factor of 3, and a read consistency level of ONE, the closest replica for the given row is contacted to fulfill the read request. In the background a read repair is potentially initiated, based on the read_repair_chance setting of the table, for the other replicas.</p>
-<p><img src="..\assets\singleDCConOne.svg" alt="Figure 2"></p>
-<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-quorum">A two data center cluster with a consistency level of QUORUM</h3>
-<p>In a two data center cluster with a replication factor of 3, and a read consistency of QUORUM, 4 replicas for the given row must resond to fulfill the read request. The 4 replicas can be from any data center. In the background, the remaining replicas are checked for consistency with the first four, and if needed, a read repair is initiated for the out-of-date replicas.</p>
-<p><img src="..\assets\multipleDCConQuorum.svg" alt="Figure 3"></p>
-<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-local_quorum">A two data center cluster with a consistency level of LOCAL_QUORUM</h3>
-<p>In a multiple data center cluster with a replication factor of 3, and a read consistency of LOCAL_QUORUM, 2 replicas in the same data center as the coordinator node for the given row must respond to fulfill the read request. In the background, the remaining replicas are checked for consistency with the first 2, and if needed, a read repair is initiated for the out-of-date replicas.</p>
-<p><img src="..\assets\multipleDCConLocalQuorum.svg" alt="Figure 4"></p>
-<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-one">A two data center cluster with a consistency level of ONE</h3>
-<p>In a multiple data center cluster with a replication factor of 3, and a read consistency of ONE, the closest replica for the given row, regardless of data center, is contacted to fulfill the read request. In the background a read repair is potentially initiated, based on the read_repair_chance setting of the table, for the other replicas.</p>
-<p><img src="..\assets\multipleDCConOne.svg" alt="Figure 5"></p>
-<h3 id="a-two-data-center-cluster-with-a-consistency-level-of-local_one">A two data center cluster with a consistency level of LOCAL_ONE</h3>
-<p>In a multiple data center cluster with a replication factor of 3, and a read consistency of LOCAL_ONE, the closest replica for the given row in the same data center as the coodindator node is contacted to fulfill the read request. In the background a read repair is potentially initiated, based on the read_repair_chance setting of the table, for the other replicas.</p>
-<p><img src="..\assets\multipleDCConLocalOne.svg" alt="Figure 6"></p>
-<h3 id="rapid-read-protection-using-speculative_retry">Rapid read protection using speculative_retry</h3>
-<p>Rapid read protection allows Cassandra to still deliver read requests when the originally selected replica nodes are either down or taking too long to respond. If the table has been configured with the speculative_retry property, the coordinator node for the read request will retry the request with another replica node if the original replica node exceeds a configurable timeout value to complete the read request.</p>
-<p><img src="..\assets\rapidReadProtection.svg" alt="Figure 7"></p>
+                        <h1 id="-">客户端请求</h1>
+<p><sup><a href="#ref_1">1</a></sup>客户端的读写请求会平均分布到集群上的任意节点，因为每个节点都是平等的。</p>
+<p>这一章，介绍客户端请求如何连接到一个节点，以及节点之间如何通信。</p>
+<h2 id="-">参考</h2>
+<ol>
+<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsAbout_c.html" target="_blank">http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureClientRequestsAbout_c.html</a></li>
+</ol>
 
                     
                     </section>
@@ -442,8 +426,10 @@
         </div>
 
         
-        <a href="../client/write_requests.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Write Requests"><i class="fa fa-angle-left"></i></a>
+        <a href="../caching/data_caching.html" class="navigation navigation-prev " aria-label="Previous page: 数据缓存"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../client/which_node_to_connect.html" class="navigation navigation-next " aria-label="Next page: 连接哪个节点"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

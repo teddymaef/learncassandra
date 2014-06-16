@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="6.1" data-basepath=".." data-revision="1400665129547">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="6.1" data-basepath=".." data-revision="1402890407028">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -394,7 +394,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_7">
+                    <section class="normal" id="section-gitbook_9">
                     
                         <h1 id="which-node-to-connect">Which Node to Connect</h1>
 <p>Which node to connect depends on the configuration of the client side driver.</p>
@@ -408,7 +408,7 @@
 <p>Why it is not necessary to connect to all the contact points is because, each node contains the metadata of all the other nodes, meaning as long as one is connected, the driver could get infomation of all the nodes in the cluster. The driver will then use the metadata of the entire cluster got from the connected node to create the connection pool. This also means, it is not necessary to set address of all your nodes to the contact points setting. The best practice is to set the nodes which responds the fastest to the client as contact points.</p>
 <h2 id="load-balancing-policies">Load Balancing Policies</h2>
 <p>By default, a client side Cluster instance manages connections to all the nodes in the cluster and ramdonly connect to one node for any client request, which might not be performant enough, especially when you have multiple data centers.</p>
-<p>For example, if you have a Cluster consists of nodes in two data centers, ont at China and one at US. If your client is at China, you don&#39;t want to connect to a US node, because it might be too slow.</p>
+<p>For example, if you have a Cluster consists of nodes in two data centers, one at China and one at US. If your client is at China, you don&#39;t want to connect to a US node, because it might be too slow.</p>
 <p>&quot;Load balancing policies&quot; setting on a Cluster instance determines the strategy of assigning connection of nodes to client requests.</p>
 <p>One of the most commonly used build-in load balancing policy is the DCAwareLoadBalancePolicy, which could make the Cluster only assign connections of the nodes in the specified data center to any client requests.</p>
 <p>You are also allowed to implement your own custom load balanacing policies.</p>

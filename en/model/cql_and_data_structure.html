@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.3" data-basepath=".." data-revision="1400665129547">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.3" data-basepath=".." data-revision="1402890407028">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -394,9 +394,9 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_12">
+                    <section class="normal" id="section-gitbook_13">
                     
-                        <h1 id="cql-data-structure-">CQL &amp; Data Structure?</h1>
+                        <h1 id="cql-data-structure">CQL &amp; Data Structure</h1>
 <p>The recommended API for creating schemas in Cassandra since 0.7 is via CQL. But Cassandra encourages developer to share schema information to achieve more transparency. Why? Because although CQL looks very much like SQL, they don&#39;t work in a similar way internally. Remember, for each column family, don’t think of a relational table. Instead, think of a nested sorted map data structure.</p>
 <h2 id="a-simple-example">A Simple Example</h2>
 <p>For example, creating ColumnFamily(Table) with CQL:</p>
@@ -466,7 +466,7 @@ RowKey: 7
     <span class="hljs-string">'normalVal2'</span>);</span>
 </code></pre>
 <p>How is the data stored?</p>
-<pre><code class="lang-test">RowKey: partitionVal1:partitionVal2
+<pre><code class="lang-text">RowKey: partitionVal1:partitionVal2
 =&gt; (column=clusterVal1:clusterVal2:, value=, timestamp=1374630892473000)
 =&gt; (column=clusterVal1:clusterVal2:normalfield1, value=6e6f726d616c56616c31, timestamp=1374630892473000)
 =&gt; (column=clusterVal1:clusterVal2:normalfield2, value=6e6f726d616c56616c32, timestamp=1374630892473000)
@@ -512,8 +512,8 @@ RowKey: 7
 <p>Internal column names for map, list and set items have different patterns:</p>
 <ul>
 <li>For map, each item in the map becomes a column, and the column name is the combination of the map column name and the key of the item, the value is the value of the item</li>
-<li>For list, each item in the list becomes a column, and the column name is the combination of the map column name and the UUID of the item order in the list, the value is the value of the item</li>
-<li>For set, each item in the set becomes a column, and the column name is the combination of the map column name and the item value, the value is always empty</li>
+<li>For list, each item in the list becomes a column, and the column name is the combination of the list column name and the UUID of the item order in the list, the value is the value of the item</li>
+<li>For set, each item in the set becomes a column, and the column name is the combination of the set column name and the item value, the value is always empty</li>
 </ul>
 <h2 id="references">References</h2>
 <ol>

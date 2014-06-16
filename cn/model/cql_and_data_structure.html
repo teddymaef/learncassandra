@@ -3,24 +3,24 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Indexing | Learn Cassandra</title>
+        <title>CQL &amp; 数据结构 | 学习Cassandra</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
         <meta name="author" content="teddymaef">
-        <meta name="description" content="This book step-by-step guides **developers** to understand what Cassandra is, how Cassandra works and how to use the features and capabilities of Apache Cassandra 2.0.">
+        <meta name="description" content="本书循序渐进的引导**开发人员**理解Cassandra是什么，如何工作以及如何使用Apache Cassandra 2.0的功能。">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../replication/data_replication.html" />
+        <link rel="next" href="../model/where_is_data_stored.html" />
         
         
-        <link rel="prev" href="../model/where_is_data_stored.html" />
+        <link rel="prev" href="../model/cql.html" />
         
 
-        <meta property="og:title" content="Indexing | Learn Cassandra">
-        <meta property="og:site_name" content="Learn Cassandra">
+        <meta property="og:title" content="CQL &amp; 数据结构 | 学习Cassandra">
+        <meta property="og:site_name" content="学习Cassandra">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
 
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="teddymaef/learncassandra" data-level="2.5" data-basepath=".." data-revision="1402890407028">
+    <div class="book" data-github="teddymaef/learncassandra" data-level="2.3" data-basepath=".." data-revision="1402890414739">
     ﻿<div class="book-header">
     <!-- Actions Left -->
     
@@ -113,7 +113,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Learn Cassandra</a>
+        <a href="../" >学习Cassandra</a>
     </h1>
 </div>
 
@@ -136,7 +136,7 @@
 
         
         <li>
-            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/indexing.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/teddymaef/learncassandra/edit/master/model/cql_and_data_structure.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -149,7 +149,7 @@
             <li  data-level="1" data-path="about/about_cassandra.html">
                 
                 <a href="../about/about_cassandra.html">
-                    <i class="fa fa-check"></i> <b>1.</b> About Cassandra
+                    <i class="fa fa-check"></i> <b>1.</b> 关于Cassandra
                 </a>
                 
                 
@@ -158,7 +158,7 @@
                         <li  data-level="1.1" data-path="about/the_history_of_cassandra.html">
                             
                             <a href="../about/the_history_of_cassandra.html">
-                                <i class="fa fa-check"></i> <b>1.1.</b> The History of Cassandra
+                                <i class="fa fa-check"></i> <b>1.1.</b> Cassandra的历史
                             </a>
                             
                         </li>
@@ -166,7 +166,7 @@
                         <li  data-level="1.2" data-path="about/the_cap_theorem.html">
                             
                             <a href="../about/the_cap_theorem.html">
-                                <i class="fa fa-check"></i> <b>1.2.</b> The CAP Theorem
+                                <i class="fa fa-check"></i> <b>1.2.</b> CAP定理
                             </a>
                             
                         </li>
@@ -174,7 +174,7 @@
                         <li  data-level="1.3" data-path="about/what_can_cassandra_do.html">
                             
                             <a href="../about/what_can_cassandra_do.html">
-                                <i class="fa fa-check"></i> <b>1.3.</b> What Can Cassandra Do
+                                <i class="fa fa-check"></i> <b>1.3.</b> Cassandra能做什么
                             </a>
                             
                         </li>
@@ -186,7 +186,7 @@
             <li  data-level="2" data-path="model/data_model_and_cql.html">
                 
                 <a href="../model/data_model_and_cql.html">
-                    <i class="fa fa-check"></i> <b>2.</b> Data Model &amp; CQL
+                    <i class="fa fa-check"></i> <b>2.</b> 数据模型 &amp; CQL
                 </a>
                 
                 
@@ -195,7 +195,7 @@
                         <li  data-level="2.1" data-path="model/internal_data_structure.html">
                             
                             <a href="../model/internal_data_structure.html">
-                                <i class="fa fa-check"></i> <b>2.1.</b> Internal Data Structure
+                                <i class="fa fa-check"></i> <b>2.1.</b> 内部数据结构
                             </a>
                             
                         </li>
@@ -211,7 +211,7 @@
                         <li  data-level="2.3" data-path="model/cql_and_data_structure.html">
                             
                             <a href="../model/cql_and_data_structure.html">
-                                <i class="fa fa-check"></i> <b>2.3.</b> CQL &amp; Data Structure
+                                <i class="fa fa-check"></i> <b>2.3.</b> CQL &amp; 数据结构
                             </a>
                             
                         </li>
@@ -219,7 +219,7 @@
                         <li  data-level="2.4" data-path="model/where_is_data_stored.html">
                             
                             <a href="../model/where_is_data_stored.html">
-                                <i class="fa fa-check"></i> <b>2.4.</b> Where Is Data Stored
+                                <i class="fa fa-check"></i> <b>2.4.</b> 数据保存在哪里
                             </a>
                             
                         </li>
@@ -227,7 +227,7 @@
                         <li  data-level="2.5" data-path="model/indexing.html">
                             
                             <a href="../model/indexing.html">
-                                <i class="fa fa-check"></i> <b>2.5.</b> Indexing
+                                <i class="fa fa-check"></i> <b>2.5.</b> 索引
                             </a>
                             
                         </li>
@@ -239,7 +239,7 @@
             <li  data-level="3" data-path="replication/data_replication.html">
                 
                 <a href="../replication/data_replication.html">
-                    <i class="fa fa-check"></i> <b>3.</b> Data Replication
+                    <i class="fa fa-check"></i> <b>3.</b> 数据Replication
                 </a>
                 
                 
@@ -256,7 +256,7 @@
                         <li  data-level="3.2" data-path="replication/replication_strategies.html">
                             
                             <a href="../replication/replication_strategies.html">
-                                <i class="fa fa-check"></i> <b>3.2.</b> Replication Strategies
+                                <i class="fa fa-check"></i> <b>3.2.</b> Replication策略
                             </a>
                             
                         </li>
@@ -264,7 +264,7 @@
                         <li  data-level="3.3" data-path="replication/turnable_consistency.html">
                             
                             <a href="../replication/turnable_consistency.html">
-                                <i class="fa fa-check"></i> <b>3.3.</b> Turnable Consistency
+                                <i class="fa fa-check"></i> <b>3.3.</b> 可调节的一致性
                             </a>
                             
                         </li>
@@ -276,7 +276,7 @@
             <li  data-level="4" data-path="concurrent/concurrency_control.html">
                 
                 <a href="../concurrent/concurrency_control.html">
-                    <i class="fa fa-check"></i> <b>4.</b> Concurrency Control
+                    <i class="fa fa-check"></i> <b>4.</b> 并发控制
                 </a>
                 
                 
@@ -285,7 +285,7 @@
             <li  data-level="5" data-path="caching/data_caching.html">
                 
                 <a href="../caching/data_caching.html">
-                    <i class="fa fa-check"></i> <b>5.</b> Data Caching
+                    <i class="fa fa-check"></i> <b>5.</b> 数据缓存
                 </a>
                 
                 
@@ -294,7 +294,7 @@
             <li  data-level="6" data-path="client/client_requests.html">
                 
                 <a href="../client/client_requests.html">
-                    <i class="fa fa-check"></i> <b>6.</b> Client Requests
+                    <i class="fa fa-check"></i> <b>6.</b> 客户端请求
                 </a>
                 
                 
@@ -303,7 +303,7 @@
                         <li  data-level="6.1" data-path="client/which_node_to_connect.html">
                             
                             <a href="../client/which_node_to_connect.html">
-                                <i class="fa fa-check"></i> <b>6.1.</b> Which Node to Connect
+                                <i class="fa fa-check"></i> <b>6.1.</b> 连接哪个节点
                             </a>
                             
                         </li>
@@ -311,7 +311,7 @@
                         <li  data-level="6.2" data-path="client/write_requests.html">
                             
                             <a href="../client/write_requests.html">
-                                <i class="fa fa-check"></i> <b>6.2.</b> Write Requests
+                                <i class="fa fa-check"></i> <b>6.2.</b> 写请求
                             </a>
                             
                         </li>
@@ -319,7 +319,7 @@
                         <li  data-level="6.3" data-path="client/read_requests.html">
                             
                             <a href="../client/read_requests.html">
-                                <i class="fa fa-check"></i> <b>6.3.</b> Read Requests
+                                <i class="fa fa-check"></i> <b>6.3.</b> 读请求
                             </a>
                             
                         </li>
@@ -343,78 +343,183 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 50%;min-width: 45%;"></div>
+        <div class="inner" style="width: 40%;min-width: 35%;"></div>
     </div>
     <div class="chapters">
     
         <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="../about/about_cassandra.html" title="About Cassandra" class="chapter done new-chapter" data-progress="1" style="left: 5%;"></a>
+        <a href="../about/about_cassandra.html" title="关于Cassandra" class="chapter done new-chapter" data-progress="1" style="left: 5%;"></a>
     
-        <a href="../about/the_history_of_cassandra.html" title="The History of Cassandra" class="chapter done " data-progress="1.1" style="left: 10%;"></a>
+        <a href="../about/the_history_of_cassandra.html" title="Cassandra的历史" class="chapter done " data-progress="1.1" style="left: 10%;"></a>
     
-        <a href="../about/the_cap_theorem.html" title="The CAP Theorem" class="chapter done " data-progress="1.2" style="left: 15%;"></a>
+        <a href="../about/the_cap_theorem.html" title="CAP定理" class="chapter done " data-progress="1.2" style="left: 15%;"></a>
     
-        <a href="../about/what_can_cassandra_do.html" title="What Can Cassandra Do" class="chapter done " data-progress="1.3" style="left: 20%;"></a>
+        <a href="../about/what_can_cassandra_do.html" title="Cassandra能做什么" class="chapter done " data-progress="1.3" style="left: 20%;"></a>
     
-        <a href="../model/data_model_and_cql.html" title="Data Model &amp; CQL" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
+        <a href="../model/data_model_and_cql.html" title="数据模型 &amp; CQL" class="chapter done new-chapter" data-progress="2" style="left: 25%;"></a>
     
-        <a href="../model/internal_data_structure.html" title="Internal Data Structure" class="chapter done " data-progress="2.1" style="left: 30%;"></a>
+        <a href="../model/internal_data_structure.html" title="内部数据结构" class="chapter done " data-progress="2.1" style="left: 30%;"></a>
     
         <a href="../model/cql.html" title="CQL" class="chapter done " data-progress="2.2" style="left: 35%;"></a>
     
-        <a href="../model/cql_and_data_structure.html" title="CQL &amp; Data Structure" class="chapter done " data-progress="2.3" style="left: 40%;"></a>
+        <a href="../model/cql_and_data_structure.html" title="CQL &amp; 数据结构" class="chapter done " data-progress="2.3" style="left: 40%;"></a>
     
-        <a href="../model/where_is_data_stored.html" title="Where Is Data Stored" class="chapter done " data-progress="2.4" style="left: 45%;"></a>
+        <a href="../model/where_is_data_stored.html" title="数据保存在哪里" class="chapter  " data-progress="2.4" style="left: 45%;"></a>
     
-        <a href="../model/indexing.html" title="Indexing" class="chapter done " data-progress="2.5" style="left: 50%;"></a>
+        <a href="../model/indexing.html" title="索引" class="chapter  " data-progress="2.5" style="left: 50%;"></a>
     
-        <a href="../replication/data_replication.html" title="Data Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
+        <a href="../replication/data_replication.html" title="数据Replication" class="chapter  new-chapter" data-progress="3" style="left: 55%;"></a>
     
         <a href="../replication/partitioners.html" title="Partitioners" class="chapter  " data-progress="3.1" style="left: 60%;"></a>
     
-        <a href="../replication/replication_strategies.html" title="Replication Strategies" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
+        <a href="../replication/replication_strategies.html" title="Replication策略" class="chapter  " data-progress="3.2" style="left: 65%;"></a>
     
-        <a href="../replication/turnable_consistency.html" title="Turnable Consistency" class="chapter  " data-progress="3.3" style="left: 70%;"></a>
+        <a href="../replication/turnable_consistency.html" title="可调节的一致性" class="chapter  " data-progress="3.3" style="left: 70%;"></a>
     
-        <a href="../concurrent/concurrency_control.html" title="Concurrency Control" class="chapter  new-chapter" data-progress="4" style="left: 75%;"></a>
+        <a href="../concurrent/concurrency_control.html" title="并发控制" class="chapter  new-chapter" data-progress="4" style="left: 75%;"></a>
     
-        <a href="../caching/data_caching.html" title="Data Caching" class="chapter  new-chapter" data-progress="5" style="left: 80%;"></a>
+        <a href="../caching/data_caching.html" title="数据缓存" class="chapter  new-chapter" data-progress="5" style="left: 80%;"></a>
     
-        <a href="../client/client_requests.html" title="Client Requests" class="chapter  new-chapter" data-progress="6" style="left: 85%;"></a>
+        <a href="../client/client_requests.html" title="客户端请求" class="chapter  new-chapter" data-progress="6" style="left: 85%;"></a>
     
-        <a href="../client/which_node_to_connect.html" title="Which Node to Connect" class="chapter  " data-progress="6.1" style="left: 90%;"></a>
+        <a href="../client/which_node_to_connect.html" title="连接哪个节点" class="chapter  " data-progress="6.1" style="left: 90%;"></a>
     
-        <a href="../client/write_requests.html" title="Write Requests" class="chapter  " data-progress="6.2" style="left: 95%;"></a>
+        <a href="../client/write_requests.html" title="写请求" class="chapter  " data-progress="6.2" style="left: 95%;"></a>
     
-        <a href="../client/read_requests.html" title="Read Requests" class="chapter  " data-progress="6.3" style="left: 100%;"></a>
+        <a href="../client/read_requests.html" title="读请求" class="chapter  " data-progress="6.3" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h1 id="indexing">Indexing</h1>
-<p><sup><a href="#ref_1">1</a></sup>An index (former name: secondary index) provides means to access data in Cassandra using non-primary key fields other than the partition key. The benefit is fast, efficient lookup of data matching a given condition. Actually, if there is no index on a normal column, it is even not allowed to conditionally query by the column.</p>
-<p>An index indexes column values in a separate, hidden column family (table) from the one that contains the values being indexed. The data of an index is local only, which means it will not be replicated to other nodes. This also means, for data query by indexed column, the requests has to be forwarded to all the nodes, waiting for all the resonses, and then the results are merged and returned. So if you have many nodes, the query response slows down as more machines are added to the cluster.</p>
-<p><strong>Caution:</strong></p>
-<p>By the current version (2.0.7) of Apache Cassandra, you could only query by an indexed column with equality comparison condition. Range select or order-by by an indexed column is not supported. The reason is the keys stored in the hidden column family are unsorted.</p>
-<h2 id="when-to-use-an-index-">When to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Cassandra&#39;s built-in indexes are best on a table having many rows that contain the indexed value. The more unique values that exist in a particular column, the more overhead you will have for querying and maintaining the index. For example, suppose you had a playlists table with a billion songs and wanted to look up songs by the artist. Many songs will share the same column value for artist. The artist column is a good candidate for an index.</p>
-<h2 id="when-not-to-use-an-index-">When Not to Use An Index?</h2>
-<p><sup><a href="#ref_2">2</a></sup>Do not use an index in these situations:</p>
+                        <h1 id="cql-">CQL &amp; 数据架构</h1>
+<p>从Cassandra 0.7开始，推荐使用CQL来创建column family结构。
+同时Cassandra鼓励开发人员分享column family结构。 为什么呢？因为，虽然CQL看起来和SQL很像，他们的内部原理完全不同。记住，不要把一个column family想像成关系型数据库的表，而要想像成一个嵌套的键值有序的哈希表。</p>
+<h2 id="-">简单例子</h2>
+<p>例如，用CQL创建一个ColumnFamily(Table)：</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (
+    field1 <span class="hljs-keyword">int</span> <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
+    field2 <span class="hljs-keyword">int</span>,
+    field3 <span class="hljs-keyword">int</span>);</span>
+</code></pre>
+<p>然后插入一些行：</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (field1, field2, field3) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (field1, field2, field3) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (field1, field2, field3) <span class="hljs-keyword">VALUES</span> (<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>);</span>
+</code></pre>
+<p>数据怎么存储呢？</p>
+<pre><code class="lang-text">RowKey: 1
+=&gt; (column=, value=, timestamp=1374546754299000)
+=&gt; (column=field2, value=00000002, timestamp=1374546754299000)
+=&gt; (column=field3, value=00000003, timestamp=1374546754299000)
+-------------------
+RowKey: 4
+=&gt; (column=, value=, timestamp=1374546757815000)
+=&gt; (column=field2, value=00000005, timestamp=1374546757815000)
+=&gt; (column=field3, value=00000006, timestamp=1374546757815000)
+-------------------
+RowKey: 7
+=&gt; (column=, value=, timestamp=1374546761055000)
+=&gt; (column=field2, value=00000008, timestamp=1374546761055000)
+=&gt; (column=field3, value=00000009, timestamp=1374546761055000)
+</code></pre>
+<p>对于每一个插入的行，有三点需要注意：row key (RowKey: &lt;?&gt;)，列名(column=&lt;?&gt;)和列值(value=&lt;?&gt;)。从上面的例子，我们可以做出一些基本的关于CQL如何映射到Cassandra内部存储结构的总结：</p>
 <ul>
-<li>On high-cardinality columns because you then query a huge volume of records for a small number of results</li>
-<li>In tables that use a counter column</li>
-<li>On a frequently updated or deleted column</li>
-<li>To look for a row in a large partition unless narrowly queried</li>
+<li>row key的值是CQL中定义的主键的值。（在CQL术语里面，row key被称作“partition key”）</li>
+<li>CQL中的非主键的字段的字段名，映射到内部的列名，字段值映射到内部的列值</li>
+<li>每一个<em>RowKey</em>下的左右字段，是按列名排序存储的</li>
+</ul>
+<p>你可能也注意到了，每一个row，都有一个列，列名和列值都为空。这并不是bug。事实上这是为了支持只有row key字段有值，而没有任何其他列有值的情况。</p>
+<h2 id="-">更复杂的例子</h2>
+<p>一个更复杂一点的例子:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (
+    partitionKey1 text,
+    partitionKey2 text,
+    clusterKey1 text,
+    clusterKey2 text,
+    normalField1 text,
+    normalField2 text,
+    <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span> (
+        (partitionKey1, partitionKey2),
+        clusterKey1, clusterKey2
+        )
+    );</span>
+</code></pre>
+<p>这里我们用字段在内部存储时的类型来命名字段。而且我们已经包含了所有情形。这里的主键不仅仅是复合主键，而且是复合partition key （在PRIMARY KEY部分的前半段，用括号括起的部分）和复合cluster key。</p>
+<p>然后插入一些行:</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (
+    partitionKey1,
+    partitionKey2,
+    clusterKey1,
+    clusterKey2,
+    normalField1,
+    normalField2
+    ) <span class="hljs-keyword">VALUES</span> (
+    <span class="hljs-string">'partitionVal1'</span>,
+    <span class="hljs-string">'partitionVal2'</span>,
+    <span class="hljs-string">'clusterVal1'</span>,
+    <span class="hljs-string">'clusterVal2'</span>,
+    <span class="hljs-string">'normalVal1'</span>,
+    <span class="hljs-string">'normalVal2'</span>);</span>
+</code></pre>
+<p>数据怎么存储呢？</p>
+<pre><code class="lang-text">RowKey: partitionVal1:partitionVal2
+=&gt; (column=clusterVal1:clusterVal2:, value=, timestamp=1374630892473000)
+=&gt; (column=clusterVal1:clusterVal2:normalfield1, value=6e6f726d616c56616c31, timestamp=1374630892473000)
+=&gt; (column=clusterVal1:clusterVal2:normalfield2, value=6e6f726d616c56616c32, timestamp=1374630892473000)
+</code></pre>
+<ul>
+<li>注意<em>partitionVal1</em>和<em>partitionVal2</em>，我们可以发现<em>RowKey</em>（也称为partition key）是这两个字段值的组合</li>
+<li><em>clusterVal1</em>和<em>clusterVal2</em>这两个cluster key的  <em>值</em>（注意是值不是字段名称）的组合，成为了每一个非主键列名的前缀</li>
+<li>非主键列的值，比如<em>normalfield1</em>和<em>normalfield2</em>的值，是列名加上cluster key的值之后的列的值</li>
+<li>每一个row中的列，是按列名排序的，而因为cluster key的值成为非主键列名的前缀，每个row下的所有的列，实际上首先按照cluster key的值排序，然后再按照CQL里的列名排序</li>
+</ul>
+<h2 id="map-list-set">Map, List &amp; Set</h2>
+<p>下面是一个set，list和map类型的例子：</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> example (
+    key1 text <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span>,
+    map1 map&lt;text,text&gt;,
+    list1 list&lt;text&gt;,
+    set1 <span class="hljs-keyword">set</span>&lt;text&gt;
+    );</span>
+</code></pre>
+<p>插入数据：</p>
+<pre><code class="lang-SQL"><span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> example (
+    key1,
+    map1,
+    list1,
+    set1
+    ) <span class="hljs-keyword">VALUES</span> (
+    <span class="hljs-string">'john'</span>,
+    {<span class="hljs-string">'patricia'</span>:<span class="hljs-string">'555-4326'</span>,<span class="hljs-string">'doug'</span>:<span class="hljs-string">'555-1579'</span>},
+    [<span class="hljs-string">'doug'</span>,<span class="hljs-string">'scott'</span>],
+    {<span class="hljs-string">'patricia'</span>,<span class="hljs-string">'scott'</span>}
+    )</span>
+</code></pre>
+<p>数据怎么存储呢？</p>
+<pre><code class="lang-text">RowKey: john
+=&gt; (column=, value=, timestamp=1374683971220000)
+=&gt; (column=map1:doug, value=&#39;555-1579&#39;, timestamp=1374683971220000)
+=&gt; (column=map1:patricia, value=&#39;555-4326&#39;, timestamp=1374683971220000)
+=&gt; (column=list1:26017c10f48711e2801fdf9895e5d0f8, value=&#39;doug&#39;, timestamp=1374683971220000)
+=&gt; (column=list1:26017c12f48711e2801fdf9895e5d0f8, value=&#39;scott&#39;, timestamp=1374683971220000)
+=&gt; (column=set1:&#39;patricia&#39;, value=, timestamp=1374683971220000)
+=&gt; (column=set1:&#39;scott&#39;, value=, timestamp=1374683971220000)
+</code></pre>
+<p>map，list和set的内部存储各不相同：</p>
+<ul>
+<li>对于map，每一个map的元素成为一列，列名是map字段的列名和这个元素的键值的组合，列值就是这个元素的值</li>
+<li>对于list，每一个list的元素成为一列，列名是list字段的列名和一个代表元素在list里的index的UUID的组合，列值就是这个元素的值</li>
+<li>对于set，每一个set的元素成为一列，列名是set字段的列名和这个元素的值的组合，列值总是空值</li>
 </ul>
 <h2 id="references">References</h2>
 <ol>
-<li><a name="ref_1"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_primary_index_c.html</a></li>
-<li><a name="ref_2"></a><a href="http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html" target="_blank">http://www.datastax.com/documentation/cql/3.1/cql/ddl/ddl_when_use_index_c.html</a></li>
+<li><a href="http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure/" target="_blank">http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure/</a></li>
+<li><a href="http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure-sets-lists-and-maps/" target="_blank">http://www.opensourceconnections.com/2013/07/24/understanding-how-cql3-maps-to-cassandras-internal-data-structure-sets-lists-and-maps/</a></li>
 </ol>
 
                     
@@ -439,10 +544,10 @@
         </div>
 
         
-        <a href="../model/where_is_data_stored.html" class="navigation navigation-prev " aria-label="Previous page: Where Is Data Stored"><i class="fa fa-angle-left"></i></a>
+        <a href="../model/cql.html" class="navigation navigation-prev " aria-label="Previous page: CQL"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../replication/data_replication.html" class="navigation navigation-next " aria-label="Next page: Data Replication"><i class="fa fa-angle-right"></i></a>
+        <a href="../model/where_is_data_stored.html" class="navigation navigation-next " aria-label="Next page: 数据保存在哪里"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
