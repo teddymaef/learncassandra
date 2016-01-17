@@ -1,3 +1,3 @@
 learncassandra
 ==============
-Gitbook for Learning Cassandra, provides English and Chinese Version.
+[Gitbook for Learning Cassandra](https://www.gitbook.com/book/teddyma/learncassandra/), provides English and Chinese Version.
