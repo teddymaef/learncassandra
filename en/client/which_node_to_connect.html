@@ -412,7 +412,7 @@
 <p>&quot;Load balancing policies&quot; setting on a Cluster instance determines the strategy of assigning connection of nodes to client requests.</p>
 <p>One of the most commonly used build-in load balancing policy is the DCAwareLoadBalancePolicy, which could make the Cluster only assign connections of the nodes in the specified data center to any client requests.</p>
 <p>You are also allowed to implement your own custom load balanacing policies.</p>
-<h2 id="coodinator">Coodinator</h2>
+<h2 id="coodinator">Coordinator</h2>
 <p><sup><a href="#ref_1">1</a></sup>When a client connects to a node and issues a read or write request, that node serves as the coordinator for that particular client operation.</p>
 <p>The job of the coordinator is to act as a proxy between the client application and the nodes (or replicas) that own the data being requested. The coordinator determines which nodes in the ring should get the request based on the cluster configured <a href="../replication/partitioners.html">partitioner</a> and <a href="../replication/replication_strategies.html">replication strategy</a>.</p>
 <h2 id="reference">Reference</h2>
